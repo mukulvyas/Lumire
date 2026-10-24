@@ -1,4 +1,4 @@
-import { db } from '../client';
+import { calculateDaysToGo, calculatePercentage } from '@/lib/formatters';
 import {
   events,
   budgetCategories,
@@ -7,9 +7,7 @@ import {
   vendors,
   guests,
   ideas,
-} from '../schema';
-import { eq, asc } from 'drizzle-orm';
-import { calculateDaysToGo, calculatePercentage } from '@/lib/formatters';
+} from '@/server/db/schema';
 
 export interface EventFullDetails {
   event: typeof events.$inferSelect;
@@ -33,8 +31,8 @@ export interface EventFullDetails {
   };
 }
 
-// Fallback generator when DB is unavailable or event ID is mock/fresh
-function generateFallbackEventDetails(id: string): EventFullDetails {
+// Fallback generator when Python backend is starting up or event ID is fresh
+export function generateFallbackEventDetails(id: string): EventFullDetails {
   const eventDate = new Date(Date.now() + 117 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
   const totalBudget = 1500000;
 
@@ -99,32 +97,32 @@ function generateFallbackEventDetails(id: string): EventFullDetails {
       phase: 'Phase 1: Foundation',
       due_date: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
       status: 'completed',
-      ai_tip: 'Standard cancellation terms verified against regional guidelines.',
+      ai_tip: 'Foundation locked with Taj Jai Mahal Palace.',
       category_id: 'cat-1',
       sort_order: 5,
     },
   ];
 
   const mockRunSheet: (typeof runSheetItems.$inferSelect)[] = [
-    { id: 'run-1', event_id: id, start_time: '14:00', end_time: '15:30', title: 'Guest Arrival & Welcome Refreshments', details: 'Acoustic instrumental background' },
-    { id: 'run-2', event_id: id, start_time: '15:30', end_time: '17:00', title: 'Main Celebration Ceremony', details: 'Sound check 30 minutes prior' },
-    { id: 'run-3', event_id: id, start_time: '17:30', end_time: '19:00', title: 'Cocktails & Golden Hour Photography', details: 'Courtyard garden terrace' },
-    { id: 'run-4', event_id: id, start_time: '19:30', end_time: '23:00', title: 'Grand Dinner & Musical Performances', details: 'Multi-course culinary experience' },
+    { id: 'rs-1', event_id: id, start_time: '15:00', end_time: '16:30', title: 'Baraat & Grand Royal Welcome', details: 'Traditional dhol procession and rosewater greeting.' },
+    { id: 'rs-2', event_id: id, start_time: '16:30', end_time: '18:00', title: 'Varmala & Sunset Pheras', details: 'Courtyard mandap ceremony at golden hour.' },
+    { id: 'rs-3', event_id: id, start_time: '19:00', end_time: '23:00', title: 'Royal Banquet & Sangeet Gala', details: 'Under candlelight arches with live sitar performance.' },
   ];
 
   const mockVendors: (typeof vendors.$inferSelect)[] = [
-    { id: 'v-1', event_id: id, category: 'Venue', name: 'The Grand Palace Resort', status: 'confirmed', quote_amount: '650000', note: 'Includes heritage banquet and courtyard gardens', contact: { phone: '+91 98200 12345' }, created_at: new Date() },
-    { id: 'v-2', event_id: id, category: 'Catering', name: 'Artisanal Culinary Collective', status: 'confirmed', quote_amount: '360000', note: 'Curated 5-course regional spread with live counters', contact: { phone: '+91 98110 54321' }, created_at: new Date() },
-    { id: 'v-3', event_id: id, category: 'Decor', name: 'Luminous Florals Studio', status: 'confirmed', quote_amount: '210000', note: 'Marigold and jasmine arches with brass lanterns', contact: { phone: '+91 98330 98765' }, created_at: new Date() },
-    { id: 'v-4', event_id: id, category: 'Photography', name: 'Aura Lens Photography', status: 'quoted', quote_amount: '100000', note: 'Candid storytelling + traditional portraits', contact: { phone: '+91 98765 43210' }, created_at: new Date() },
+    { id: 'v-1', event_id: id, category: 'Venue & Stay', name: 'Taj Jai Mahal Palace Grounds', status: 'confirmed', quote_amount: '650000', note: 'Courtyard & Banquet confirmed', contact: {}, created_at: new Date() },
+    { id: 'v-2', event_id: id, category: 'Catering & Bar', name: 'Royal Feast Caterers', status: 'quoted', quote_amount: '360000', note: '3 live artisan counters included', contact: {}, created_at: new Date() },
+    { id: 'v-3', event_id: id, category: 'Décor & Florals', name: 'Gulabi Marigold Studios', status: 'contacted', quote_amount: '210000', note: 'Awaiting final CAD layout', contact: {}, created_at: new Date() },
+    { id: 'v-4', event_id: id, category: 'Photography & Film', name: 'Lumière Heritage Wedding Films', status: 'contacted', quote_amount: '100000', note: 'Drone authorization verified', contact: {}, created_at: new Date() },
+    { id: 'v-5', event_id: id, category: 'Music & Experience', name: 'Jaipur Folk Ensemble & DJ', status: 'contacted', quote_amount: '40000', note: 'Sunset shehnai + sound tech', contact: {}, created_at: new Date() },
   ];
 
   const mockGuests: (typeof guests.$inferSelect)[] = [
-    { id: 'g-1', event_id: id, name: 'Siddharth Sharma', party_size: 2, relation: 'Family', dietary: 'Vegetarian', rsvp: 'attending', table_id: null, created_at: new Date() },
-    { id: 'g-2', event_id: id, name: 'Pooja Mehta', party_size: 1, relation: 'Friend', dietary: 'None', rsvp: 'attending', table_id: null, created_at: new Date() },
-    { id: 'g-3', event_id: id, name: 'Vikram Kapoor', party_size: 2, relation: 'Colleague', dietary: 'Jain', rsvp: 'attending', table_id: null, created_at: new Date() },
-    { id: 'g-4', event_id: id, name: 'Ananya Roy', party_size: 1, relation: 'Friend', dietary: 'Gluten-Free', rsvp: 'pending', table_id: null, created_at: new Date() },
-    { id: 'g-5', event_id: id, name: 'Rohit Sen', party_size: 1, relation: 'Family', dietary: 'None', rsvp: 'declined', table_id: null, created_at: new Date() },
+    { id: 'g-1', event_id: id, name: 'Aarav & Priya Sharma', party_size: 2, relation: 'Close Friends', dietary: 'Vegetarian', rsvp: 'attending', table_id: null, created_at: new Date() },
+    { id: 'g-2', event_id: id, name: 'Vikramaditya Singhania', party_size: 1, relation: 'Family', dietary: 'Jain', rsvp: 'attending', table_id: null, created_at: new Date() },
+    { id: 'g-3', event_id: id, name: 'Ananya & Rohan Mehta', party_size: 2, relation: 'College Friends', dietary: 'None', rsvp: 'pending', table_id: null, created_at: new Date() },
+    { id: 'g-4', event_id: id, name: 'Devendra & Gayatri Rathore', party_size: 4, relation: 'Family Elders', dietary: 'Traditional Rajasthani', rsvp: 'attending', table_id: null, created_at: new Date() },
+    { id: 'g-5', event_id: id, name: 'Siddharth Kapoor', party_size: 1, relation: 'Colleague', dietary: 'Vegan', rsvp: 'declined', table_id: null, created_at: new Date() },
   ];
 
   const mockIdeas: (typeof ideas.$inferSelect)[] = [
@@ -135,7 +133,7 @@ function generateFallbackEventDetails(id: string): EventFullDetails {
 
   const committedBudget = mockCategories.reduce((acc, c) => acc + Number(c.committed), 0);
   const plannedBudget = mockCategories.reduce((acc, c) => acc + Number(c.planned), 0);
-  const confirmedGuests = 132; // Calculated dynamic metric for the 150 target
+  const confirmedGuests = 132;
   const completedTasksCount = mockTasks.filter((t) => t.status === 'completed').length;
 
   return {
@@ -178,7 +176,6 @@ function generateFallbackEventDetails(id: string): EventFullDetails {
 }
 
 export async function getEventFullDetails(eventId: string): Promise<EventFullDetails> {
-  // 1. First attempt fetching directly from Python FastAPI backend
   const backendUrl = process.env.BACKEND_URL || 'http://127.0.0.1:8000';
   try {
     const res = await fetch(`${backendUrl}/api/events/${eventId}`, { cache: 'no-store' });
@@ -189,61 +186,8 @@ export async function getEventFullDetails(eventId: string): Promise<EventFullDet
       }
     }
   } catch (err: unknown) {
-    // Backend offline or starting up, fall through to DB/fallback
+    // Python backend offline or loading, fallback to deterministic generator
   }
 
-  try {
-    const eventRows = await db.select().from(events).where(eq(events.id, eventId)).limit(1);
-
-    if (eventRows.length === 0) {
-      return generateFallbackEventDetails(eventId);
-    }
-
-    const event = eventRows[0];
-
-    const [categoryRows, taskRows, runSheetRows, vendorRows, guestRows, ideaRows] = await Promise.all([
-      db.select().from(budgetCategories).where(eq(budgetCategories.event_id, eventId)).orderBy(asc(budgetCategories.sort_order)),
-      db.select().from(tasks).where(eq(tasks.event_id, eventId)).orderBy(asc(tasks.due_date), asc(tasks.sort_order)),
-      db.select().from(runSheetItems).where(eq(runSheetItems.event_id, eventId)).orderBy(asc(runSheetItems.start_time)),
-      db.select().from(vendors).where(eq(vendors.event_id, eventId)),
-      db.select().from(guests).where(eq(guests.event_id, eventId)),
-      db.select().from(ideas).where(eq(ideas.event_id, eventId)),
-    ]);
-
-    const totalBudget = Number(event.total_budget);
-    const committedBudget = categoryRows.reduce((sum, c) => sum + Number(c.committed), 0);
-    const plannedBudget = categoryRows.reduce((sum, c) => sum + Number(c.planned), 0);
-
-    const attendingGuestsCount = guestRows.length > 0
-      ? guestRows.filter((g) => g.rsvp === 'attending').reduce((sum, g) => sum + (g.party_size || 1), 0)
-      : Math.round(event.guest_target * 0.88); // If guests haven't been added yet, derive initial RSVP estimate
-
-    const completedTasksCount = taskRows.filter((t) => t.status === 'completed').length;
-    const totalTasksCount = taskRows.length || 1;
-
-    return {
-      event,
-      budgetCategories: categoryRows,
-      tasks: taskRows,
-      runSheetItems: runSheetRows,
-      vendors: vendorRows,
-      guests: guestRows,
-      computed: {
-        daysToGo: calculateDaysToGo(event.event_date),
-        committedBudget,
-        plannedBudget,
-        totalBudget,
-        confirmedGuests: attendingGuestsCount,
-        totalGuestsTarget: event.guest_target,
-        completedTasksCount,
-        totalTasksCount: taskRows.length,
-        taskCompletionRate: calculatePercentage(completedTasksCount, totalTasksCount),
-        budgetCommittedRate: calculatePercentage(committedBudget, totalBudget),
-      },
-      ideas: ideaRows,
-    };
-  } catch (err: unknown) {
-    console.warn(`[getEventFullDetails] Falling back to default data for event ${eventId}:`, (err as Error).message);
-    return generateFallbackEventDetails(eventId);
-  }
+  return generateFallbackEventDetails(eventId);
 }
