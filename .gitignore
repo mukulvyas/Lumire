@@ -33,3 +33,14 @@ pnpm-debug.log*
 
 # typescript
 *.tsbuildinfo
+
+# python
+backend/.venv/
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+*.egg-info/
+

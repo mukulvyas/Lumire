@@ -178,6 +178,20 @@ function generateFallbackEventDetails(id: string): EventFullDetails {
 }
 
 export async function getEventFullDetails(eventId: string): Promise<EventFullDetails> {
+  // 1. First attempt fetching directly from Python FastAPI backend
+  const backendUrl = process.env.BACKEND_URL || 'http://127.0.0.1:8000';
+  try {
+    const res = await fetch(`${backendUrl}/api/events/${eventId}`, { cache: 'no-store' });
+    if (res.ok) {
+      const data = await res.json();
+      if (data && data.event) {
+        return data as EventFullDetails;
+      }
+    }
+  } catch (err: unknown) {
+    // Backend offline or starting up, fall through to DB/fallback
+  }
+
   try {
     const eventRows = await db.select().from(events).where(eq(events.id, eventId)).limit(1);
 
