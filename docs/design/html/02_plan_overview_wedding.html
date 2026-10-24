@@ -1,0 +1,194 @@
+<!DOCTYPE html><html class="scroll-smooth" lang="en" style=""><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_standard" name="shell-type"><title>Soirée — Celebratory Event Architecture</title><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "inverse-on-surface": "#f6efeb", "surface-tint": "#7847a4", "primary": "#430d6e", "on-error": "#ffffff", "outline": "#7d7481", "surface": "#fff8f3", "secondary": "#ae2f34", "error": "#ba1a1a", "on-error-container": "#93000a", "tertiary": "#3e2900", "secondary-fixed-dim": "#ffb3b0", "surface-variant": "#e8e1dc", "on-primary-fixed": "#2d004f", "primary-fixed-dim": "#dfb7ff", "inverse-surface": "#33302d", "surface-container": "#f3ede8", "surface-container-highest": "#e8e1dc", "on-tertiary": "#ffffff", "primary-fixed": "#f1daff", "on-secondary": "#ffffff", "on-secondary-container": "#6d0010", "surface-bright": "#fff8f3", "on-surface": "#1d1b18", "inverse-primary": "#dfb7ff", "tertiary-fixed-dim": "#f9bc4d", "on-secondary-fixed-variant": "#8c1520", "on-primary": "#ffffff", "on-tertiary-fixed": "#271900", "on-surface-variant": "#4c4450", "surface-container-high": "#eee7e2", "error-container": "#ffdad6", "on-tertiary-fixed-variant": "#5f4100", "secondary-fixed": "#ffdad8", "surface-container-low": "#f9f2ed", "outline-variant": "#cec3d2", "surface-container-lowest": "#ffffff", "surface-dim": "#dfd9d4", "on-tertiary-container": "#e0a639", "on-primary-container": "#cf9afd", "tertiary-container": "#5a3e00", "tertiary-fixed": "#ffdeab", "background": "#fff8f3", "primary-container": "#5b2a86", "secondary-container": "#ff6b6b", "on-secondary-fixed": "#410006", "on-background": "#1d1b18", "on-primary-fixed-variant": "#5f2e8a" }, "borderRadius": { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" }, "spacing": { "gutter": "1.5rem", "space-md": "1.25rem", "space-lg": "2rem", "space-sm": "0.75rem", "space-xs": "0.375rem", "gutter-mobile": "1rem", "space-xl": "3.5rem", "margin-mobile": "1.25rem", "margin": "3rem" }, "fontFamily": { "headline-md": ["Newsreader"], "headline-lg": ["Newsreader"], "headline-sm": ["Newsreader"], "label-sm": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"], "title-lg": ["Plus Jakarta Sans"], "display-mobile": ["Newsreader"], "body-lg": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "headline-lg-mobile": ["Newsreader"], "title-md": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "display": ["Newsreader"] }, "fontSize": { "headline-md": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "headline-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "headline-sm": ["22px", { "lineHeight": "30px", "letterSpacing": "0em", "fontWeight": "600" }], "label-sm": ["11px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600" }], "body-sm": ["13px", { "lineHeight": "20px", "letterSpacing": "0.005em", "fontWeight": "400" }], "title-lg": ["18px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "700" }], "display-mobile": ["38px", { "lineHeight": "44px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "body-lg": ["18px", { "lineHeight": "28px", "letterSpacing": "0em", "fontWeight": "400" }], "body-md": ["15px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400" }], "headline-lg-mobile": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "title-md": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "600" }], "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }], "display": ["56px", { "lineHeight": "64px", "letterSpacing": "-0.02em", "fontWeight": "600" }] } } } };</script></head><body class="bg-surface font-body-md text-on-surface antialiased min-h-screen flex flex-col"><header class="fixed top-0 left-0 right-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-b border-[#5B2A86]/[0.06] shadow-[0_1px_8px_rgba(91,42,134,0.03)]"><div class="h-20 max-w-[1120px] mx-auto px-6 flex items-center justify-between"><div class="flex items-center gap-3"><a class="flex items-center gap-3 transition-opacity hover:opacity-90" data-path="home" href="#"><span class="material-symbols-outlined text-primary text-[22px]">auto_awesome</span><span class="font-headline-sm text-headline-sm tracking-tight text-primary">Soirée</span></a></div><nav class="hidden md:flex items-center gap-1.5" data-active-classes="bg-primary-container text-on-primary font-title-md"><a class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high px-4 py-2 rounded-full transition-all" data-path="home" href="#"><span class="material-symbols-outlined text-primary text-[22px]">auto_awesome</span><span class="font-headline-sm text-headline-sm tracking-tight text-primary">Soirée</span></a><a class="font-title-md text-label-md bg-primary-container text-on-primary px-4 py-2 rounded-full transition-all shadow-sm" data-path="plan" href="#">Plan</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high px-4 py-2 rounded-full transition-all" data-path="budget" href="#">Budget</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high px-4 py-2 rounded-full transition-all" data-path="guests" href="#">Guests</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high px-4 py-2 rounded-full transition-all" data-path="vendors" href="#">Vendors</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high px-4 py-2 rounded-full transition-all" data-path="ideas" href="#">Ideas</a></nav><div class="flex items-center gap-5"><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" data-path="sign-in" href="#">Sign in</a><a class="relative transition-transform active:scale-95" data-path="user-profile" href="#"><div class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-primary border border-[#5B2A86]/10"><span class="material-symbols-outlined text-[20px]">person</span></div></a></div></div></header><main class="flex-1 w-full pt-20 bg-surface"><div class="flex flex-col w-full max-w-[1200px] mx-auto px-6 pb-28 pt-8">
+<!-- Header Section -->
+<section class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-16">
+<div class="space-y-3">
+<div class="flex items-center gap-3">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm uppercase tracking-widest">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+          Active Curation
+        </span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-primary tracking-tight">
+        Riya &amp; Arjun’s Wedding
+      </h1>
+<p class="font-body-md text-body-md text-on-surface-variant flex items-center flex-wrap gap-2">
+<span class="">14 Feb 2027</span>
+<span class="text-outline-variant">•</span>
+<span class="">The Leela Palace, Jaipur</span>
+<span class="text-outline-variant">•</span>
+<span class="">150 guests</span>
+<span class="text-outline-variant">•</span>
+<span class="">₹15 lakh</span>
+</p>
+</div>
+<div class="flex items-center gap-3 self-start md:self-auto">
+<button class="group inline-flex items-center gap-2 h-12 px-6 rounded-full bg-surface-container-lowest/80 backdrop-blur-md text-primary font-title-md text-title-md shadow-sm hover:bg-surface-container-lowest hover:shadow-md transition-all active:scale-95" type="button">
+<span class="material-symbols-outlined text-[20px] text-primary/80 transition-transform group-hover:-translate-y-0.5">download</span>
+        Export PDF
+      </button>
+<button class="group inline-flex items-center gap-2.5 h-12 px-7 rounded-full bg-primary-container text-on-primary font-title-md text-title-md shadow-lg shadow-primary-container/20 hover:brightness-110 hover:shadow-xl hover:shadow-primary-container/30 transition-all active:scale-95" type="button">
+<span class="material-symbols-outlined text-[20px] text-tertiary-fixed transition-transform group-hover:rotate-12">auto_awesome</span>
+        Ask AI to edit
+      </button>
+</div>
+</section>
+<!-- Key Statistics Grid -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 pb-16">
+<!-- Countdown Card -->
+<div class="bg-surface-container-lowest/70 backdrop-blur-xl rounded-[24px] p-7 shadow-[0_8px_32px_-4px_rgba(91,42,134,0.06)] flex flex-col justify-between h-44 hover:shadow-[0_16px_40px_-8px_rgba(91,42,134,0.1)] transition-all">
+<span class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant">Countdown</span>
+<div class="flex items-baseline gap-2">
+<span class="font-headline-lg text-headline-lg text-primary">117</span>
+<span class="font-title-md text-title-md text-on-surface-variant">days</span>
+</div>
+<div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+<div class="bg-secondary-container h-full rounded-full transition-all duration-700" style="width: 65%;"></div>
+</div>
+</div>
+<!-- Guests Card -->
+<div class="bg-surface-container-lowest/70 backdrop-blur-xl rounded-[24px] p-7 shadow-[0_8px_32px_-4px_rgba(91,42,134,0.06)] flex flex-col justify-between h-44 hover:shadow-[0_16px_40px_-8px_rgba(91,42,134,0.1)] transition-all">
+<span class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant">Guests</span>
+<div class="flex items-baseline gap-1.5">
+<span class="font-headline-lg text-headline-lg text-primary">132</span>
+<span class="font-body-md text-body-md text-on-surface-variant">/ 150 confirmed</span>
+</div>
+<div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+<div class="bg-[#3DDC97] h-full rounded-full transition-all duration-700" style="width: 88%;"></div>
+</div>
+</div>
+<!-- Budget Card -->
+<div class="bg-surface-container-lowest/70 backdrop-blur-xl rounded-[24px] p-7 shadow-[0_8px_32px_-4px_rgba(91,42,134,0.06)] flex flex-col justify-between h-44 hover:shadow-[0_16px_40px_-8px_rgba(91,42,134,0.1)] transition-all">
+<span class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant">Budget</span>
+<div class="flex items-baseline gap-1.5">
+<span class="font-headline-lg text-headline-lg text-primary">₹14.2L</span>
+<span class="font-body-md text-body-md text-on-surface-variant">/ ₹15.0L</span>
+</div>
+<div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+<div class="bg-tertiary-fixed-dim h-full rounded-full transition-all duration-700" style="width: 94%;"></div>
+</div>
+</div>
+<!-- Tasks Card -->
+<div class="bg-surface-container-lowest/70 backdrop-blur-xl rounded-[24px] p-7 shadow-[0_8px_32px_-4px_rgba(91,42,134,0.06)] flex flex-col justify-between h-44 hover:shadow-[0_16px_40px_-8px_rgba(91,42,134,0.1)] transition-all">
+<span class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant">Tasks</span>
+<div class="flex items-baseline gap-1.5">
+<span class="font-headline-lg text-headline-lg text-primary">18</span>
+<span class="font-body-md text-body-md text-on-surface-variant">/ 40 done</span>
+</div>
+<div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary-container h-full rounded-full transition-all duration-700" style="width: 45%;"></div>
+</div>
+</div>
+</section>
+<!-- Two Column Content Section -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+<!-- Next Steps (8 Columns) -->
+<div class="lg:col-span-7 flex flex-col space-y-6">
+<div class="flex items-baseline justify-between px-1">
+<h2 class="font-headline-md text-headline-md text-primary">Next steps</h2>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Chronological Flow</span>
+</div>
+<div class="bg-surface-container-lowest/70 backdrop-blur-xl rounded-[24px] p-8 shadow-[0_8px_32px_-4px_rgba(91,42,134,0.06)] flex flex-col space-y-8">
+<!-- Milestone 1 -->
+<div class="group flex items-start gap-4">
+<button class="mt-1 flex-shrink-0 w-6 h-6 rounded-full bg-surface-container flex items-center justify-center transition-colors" onclick="this.classList.toggle('bg-primary'); this.classList.toggle('text-on-primary'); this.classList.toggle('bg-surface-container'); this.querySelector('span').classList.toggle('opacity-0');" type="button">
+<span class="material-symbols-outlined text-[16px] text-on-primary opacity-0 transition-opacity">check</span>
+</button>
+<div class="flex-1 space-y-2">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+<h3 class="font-title-lg text-title-lg text-on-surface font-semibold group-hover:text-primary transition-colors">
+                Finalize Sangeet Choreographer &amp; Playlist
+              </h3>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant font-medium">Due in 4 days <span class="text-outline-variant">•</span> 29 Oct 2026</p>
+<div class="flex items-center gap-2 p-3 rounded-xl bg-surface-container-low text-primary text-body-sm font-body-sm">
+<span class="material-symbols-outlined text-[18px] text-tertiary-container flex-shrink-0">tips_and_updates</span>
+<span class="">AI Tip: Book by Friday to lock in peak season rehearsal rates.</span>
+</div>
+</div>
+</div>
+<div class="h-px w-full bg-surface-container"></div>
+<!-- Milestone 2 -->
+<div class="group flex items-start gap-4">
+<button class="mt-1 flex-shrink-0 w-6 h-6 rounded-full bg-surface-container flex items-center justify-center transition-colors" onclick="this.classList.toggle('bg-primary'); this.classList.toggle('text-on-primary'); this.classList.toggle('bg-surface-container'); this.querySelector('span').classList.toggle('opacity-0');" type="button">
+<span class="material-symbols-outlined text-[16px] text-on-primary opacity-0 transition-opacity">check</span>
+</button>
+<div class="flex-1 space-y-2">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+<h3 class="font-title-lg text-title-lg text-on-surface font-semibold group-hover:text-primary transition-colors">
+                Confirm Royal Suite Tasting Menu at The Leela
+              </h3>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant font-medium">Due in 10 days <span class="text-outline-variant">•</span> 4 Nov 2026</p>
+<div class="flex items-center gap-2 p-3 rounded-xl bg-surface-container-low text-primary text-body-sm font-body-sm">
+<span class="material-symbols-outlined text-[18px] text-tertiary-container flex-shrink-0">tips_and_updates</span>
+<span class="">AI Tip: 38 guests have requested vegan/Jain catering preferences.</span>
+</div>
+</div>
+</div>
+<div class="h-px w-full bg-surface-container"></div>
+<!-- Milestone 3 -->
+<div class="group flex items-start gap-4">
+<button class="mt-1 flex-shrink-0 w-6 h-6 rounded-full bg-surface-container flex items-center justify-center transition-colors" onclick="this.classList.toggle('bg-primary'); this.classList.toggle('text-on-primary'); this.classList.toggle('bg-surface-container'); this.querySelector('span').classList.toggle('opacity-0');" type="button">
+<span class="material-symbols-outlined text-[16px] text-on-primary opacity-0 transition-opacity">check</span>
+</button>
+<div class="flex-1 space-y-2">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+<h3 class="font-title-lg text-title-lg text-on-surface font-semibold group-hover:text-primary transition-colors">
+                Send Royal Foil E-invites &amp; Collect Travel Details
+              </h3>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant font-medium">Due in 18 days <span class="text-outline-variant">•</span> 12 Nov 2026</p>
+<div class="flex items-center gap-2 p-3 rounded-xl bg-surface-container-low text-primary text-body-sm font-body-sm">
+<span class="material-symbols-outlined text-[18px] text-tertiary-container flex-shrink-0">tips_and_updates</span>
+<span class="">AI Tip: Sending 3 months prior increases RSVP response rate by 24%.</span>
+</div>
+</div>
+</div>
+<!-- View Timeline Link -->
+<div class="pt-2">
+<a class="inline-flex items-center gap-2 font-title-md text-title-md text-primary-container font-semibold hover:gap-3 transition-all" href="#">
+<span class="">View full timeline</span>
+<span class="material-symbols-outlined text-[20px]">arrow_right_alt</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Budget at a Glance (5 Columns) -->
+<div class="lg:col-span-5 flex flex-col space-y-6">
+<div class="flex items-baseline justify-between px-1">
+<h2 class="font-headline-md text-headline-md text-primary">Budget at a glance</h2>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Allocated Total</span>
+</div>
+<div class="bg-surface-container-lowest/70 backdrop-blur-xl rounded-[24px] p-8 shadow-[0_8px_32px_-4px_rgba(91,42,134,0.06)] flex flex-col items-center">
+<!-- SVG Donut Chart -->
+<div class="relative w-56 h-56 flex items-center justify-center my-4"><svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100"><circle class="text-surface-container" cx="50" cy="50" fill="transparent" r="38" stroke="currentColor" stroke-width="10"></circle><circle class="transition-all duration-700" cx="50" cy="50" fill="transparent" r="38" stroke="#5B2A86" stroke-dasharray="107.44 238.76" stroke-dashoffset="0" stroke-width="10"></circle><circle class="transition-all duration-700" cx="50" cy="50" fill="transparent" r="38" stroke="#F5B94A" stroke-dasharray="60.48 238.76" stroke-dashoffset="-107.44" stroke-width="10"></circle><circle class="transition-all duration-700" cx="50" cy="50" fill="transparent" r="38" stroke="#FF6B6B" stroke-dasharray="33.43 238.76" stroke-dashoffset="-167.92" stroke-width="10"></circle><circle class="transition-all duration-700" cx="50" cy="50" fill="transparent" r="38" stroke="#9B6EC9" stroke-dasharray="18.3 238.76" stroke-dashoffset="-201.35" stroke-width="10"></circle><circle class="transition-all duration-700" cx="50" cy="50" fill="transparent" r="38" stroke="#3DDC97" stroke-dasharray="6.37 238.76" stroke-dashoffset="-219.65" stroke-width="10"></circle><circle class="transition-all duration-700" cx="50" cy="50" fill="transparent" r="38" stroke="#F9BC4D" stroke-dasharray="12.74 238.76" stroke-dashoffset="-226.02" stroke-width="10"></circle></svg><div class="absolute inset-0 flex flex-col items-center justify-center text-center"><span class="font-headline-sm text-headline-sm text-primary font-semibold">₹14.2L</span><span class="font-body-sm text-body-sm text-on-surface-variant">of ₹15.0L</span></div></div>
+<!-- Legend Items -->
+<div class="w-full space-y-3 pt-6"><div class="flex items-center justify-between text-body-sm font-body-sm"><div class="flex items-center gap-2.5"><span class="w-3 h-3 rounded-full bg-primary-container"></span><span class="text-on-surface">Venue &amp; Stay</span></div><span class="text-on-surface-variant font-medium">45% • ₹6.75L</span></div><div class="flex items-center justify-between text-body-sm font-body-sm"><div class="flex items-center gap-2.5"><span class="w-3 h-3 rounded-full bg-[#F5B94A]"></span><span class="text-on-surface">Catering &amp; Bar</span></div><span class="text-on-surface-variant font-medium">25.3% • ₹3.80L</span></div><div class="flex items-center justify-between text-body-sm font-body-sm"><div class="flex items-center gap-2.5"><span class="w-3 h-3 rounded-full bg-secondary-container"></span><span class="text-on-surface">Décor &amp; Florals</span></div><span class="text-on-surface-variant font-medium">14% • ₹2.10L</span></div><div class="flex items-center justify-between text-body-sm font-body-sm"><div class="flex items-center gap-2.5"><span class="w-3 h-3 rounded-full bg-[#9B6EC9]"></span><span class="text-on-surface">Photography &amp; Film</span></div><span class="text-on-surface-variant font-medium">7.7% • ₹1.15L</span></div><div class="flex items-center justify-between text-body-sm font-body-sm"><div class="flex items-center gap-2.5"><span class="w-3 h-3 rounded-full bg-[#3DDC97]"></span><span class="text-on-surface">Music &amp; Experience</span></div><span class="text-on-surface-variant font-medium">2.7% • ₹0.40L</span></div><div class="flex items-center justify-between text-body-sm font-body-sm"><div class="flex items-center gap-2.5"><span class="w-3 h-3 rounded-full bg-tertiary-fixed-dim"></span><span class="text-on-surface">Buffer / Contingency</span></div><span class="text-on-surface-variant font-medium">5.3% • ₹0.80L</span></div></div>
+<div class="h-px w-full bg-surface-container my-6"></div>
+<!-- View Budget Link -->
+<div class="w-full">
+<a class="inline-flex items-center gap-2 font-title-md text-title-md text-primary-container font-semibold hover:gap-3 transition-all" href="#">
+<span class="">View budget</span>
+<span class="material-symbols-outlined text-[20px]">arrow_right_alt</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Floating Ask AI Button -->
+<aside class="fixed bottom-6 right-6 z-50"><button class="group flex items-center gap-2.5 px-5 h-12 rounded-full bg-primary-container text-on-primary font-title-md text-title-md shadow-[0_12px_36px_rgba(91,42,134,0.35)] hover:shadow-[0_18px_48px_rgba(91,42,134,0.45)] hover:scale-105 active:scale-95 transition-all" type="button"><span class="material-symbols-outlined text-[20px] text-tertiary-fixed transition-transform group-hover:rotate-45">auto_awesome</span><span class="">Ask AI</span></button></aside>
+</div>
+<script>
+  // Ensure top navigation tab highlight marks "Plan" as active according to the shell data attributes
+  (function() {
+    const planLink = document.querySelector('nav a[data-path="plan"]');
+    if (planLink) {
+      planLink.classList.remove('text-on-surface-variant', 'hover:bg-surface-container-high');
+      planLink.classList.add('bg-primary-container', 'text-on-primary', 'font-title-md');
+    }
+  })();
+</script></main><footer class="w-full bg-surface-container-low/70 border-t border-[#5B2A86]/[0.06] mt-auto"><div class="max-w-[1120px] mx-auto px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-6"><div class="flex items-center gap-3"><span class="font-headline-sm text-headline-sm tracking-tight text-primary">Soirée</span><span class="font-body-sm text-body-sm text-on-surface-variant">© 2026 Soirée Atelier Inc. All rights reserved.</span></div><nav class="flex items-center gap-8"><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" data-path="privacy" href="#">Privacy</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" data-path="terms" href="#">Terms</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" data-path="concierge-support" href="#">Concierge Support</a></nav></div></footer>
+
+</body></html>

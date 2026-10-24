@@ -1,0 +1,42 @@
+[
+  {
+    "region": "Mumbai",
+    "event_type": "wedding",
+    "category": "Venue & Stay",
+    "min_cost": 800000,
+    "max_cost": 2500000,
+    "unit": "package (2 nights)"
+  },
+  {
+    "region": "Mumbai",
+    "event_type": "wedding",
+    "category": "Catering & Banquet",
+    "min_cost": 2500,
+    "max_cost": 6000,
+    "unit": "per plate"
+  },
+  {
+    "region": "Mumbai",
+    "event_type": "wedding",
+    "category": "Décor & Ambiance",
+    "min_cost": 250000,
+    "max_cost": 900000,
+    "unit": "full setup"
+  },
+  {
+    "region": "Mumbai",
+    "event_type": "wedding",
+    "category": "Photography & Cinematography",
+    "min_cost": 150000,
+    "max_cost": 450000,
+    "unit": "package"
+  },
+  {
+    "region": "Mumbai",
+    "event_type": "birthday",
+    "category": "Venue & Lounge",
+    "min_cost": 80000,
+    "max_cost": 400000,
+    "unit": "evening hire"
+  }
+]

@@ -1,0 +1,266 @@
+<!DOCTYPE html><html class="scroll-smooth" lang="en" style=""><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_standard" name="shell-type"><title>Soirée — Celebratory Event Architecture</title><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "inverse-on-surface": "#f6efeb", "surface-tint": "#7847a4", "primary": "#430d6e", "on-error": "#ffffff", "outline": "#7d7481", "surface": "#fff8f3", "secondary": "#ae2f34", "error": "#ba1a1a", "on-error-container": "#93000a", "tertiary": "#3e2900", "secondary-fixed-dim": "#ffb3b0", "surface-variant": "#e8e1dc", "on-primary-fixed": "#2d004f", "primary-fixed-dim": "#dfb7ff", "inverse-surface": "#33302d", "surface-container": "#f3ede8", "surface-container-highest": "#e8e1dc", "on-tertiary": "#ffffff", "primary-fixed": "#f1daff", "on-secondary": "#ffffff", "on-secondary-container": "#6d0010", "surface-bright": "#fff8f3", "on-surface": "#1d1b18", "inverse-primary": "#dfb7ff", "tertiary-fixed-dim": "#f9bc4d", "on-secondary-fixed-variant": "#8c1520", "on-primary": "#ffffff", "on-tertiary-fixed": "#271900", "on-surface-variant": "#4c4450", "surface-container-high": "#eee7e2", "error-container": "#ffdad6", "on-tertiary-fixed-variant": "#5f4100", "secondary-fixed": "#ffdad8", "surface-container-low": "#f9f2ed", "outline-variant": "#cec3d2", "surface-container-lowest": "#ffffff", "surface-dim": "#dfd9d4", "on-tertiary-container": "#e0a639", "on-primary-container": "#cf9afd", "tertiary-container": "#5a3e00", "tertiary-fixed": "#ffdeab", "background": "#fff8f3", "primary-container": "#5b2a86", "secondary-container": "#ff6b6b", "on-secondary-fixed": "#410006", "on-background": "#1d1b18", "on-primary-fixed-variant": "#5f2e8a" }, "borderRadius": { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" }, "spacing": { "gutter": "1.5rem", "space-md": "1.25rem", "space-lg": "2rem", "space-sm": "0.75rem", "space-xs": "0.375rem", "gutter-mobile": "1rem", "space-xl": "3.5rem", "margin-mobile": "1.25rem", "margin": "3rem" }, "fontFamily": { "headline-md": ["Newsreader"], "headline-lg": ["Newsreader"], "headline-sm": ["Newsreader"], "label-sm": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"], "title-lg": ["Plus Jakarta Sans"], "display-mobile": ["Newsreader"], "body-lg": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "headline-lg-mobile": ["Newsreader"], "title-md": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "display": ["Newsreader"] }, "fontSize": { "headline-md": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "headline-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "headline-sm": ["22px", { "lineHeight": "30px", "letterSpacing": "0em", "fontWeight": "600" }], "label-sm": ["11px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600" }], "body-sm": ["13px", { "lineHeight": "20px", "letterSpacing": "0.005em", "fontWeight": "400" }], "title-lg": ["18px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "700" }], "display-mobile": ["38px", { "lineHeight": "44px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "body-lg": ["18px", { "lineHeight": "28px", "letterSpacing": "0em", "fontWeight": "400" }], "body-md": ["15px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400" }], "headline-lg-mobile": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "title-md": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "600" }], "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }], "display": ["56px", { "lineHeight": "64px", "letterSpacing": "-0.02em", "fontWeight": "600" }] } } } };</script></head><body class="bg-surface font-body-md text-on-surface antialiased min-h-screen flex flex-col"><header class="fixed top-0 left-0 right-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-b border-[#5B2A86]/[0.06] shadow-[0_1px_8px_rgba(91,42,134,0.03)]"><div class="h-20 max-w-[1120px] mx-auto px-6 flex items-center justify-between"><div class="flex items-center gap-3"><a class="flex items-center gap-3 transition-opacity hover:opacity-90" data-path="home" href="#"><span class="material-symbols-outlined text-primary text-[24px]">auto_awesome</span><span class="font-headline-sm text-headline-sm tracking-tight text-primary">Soirée</span></a></div><nav class="hidden md:flex items-center gap-1.5" data-active-classes="bg-primary-container text-on-primary font-title-md"><a class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high px-4 py-2 rounded-full transition-all" data-path="home" href="#"><span class="material-symbols-outlined text-primary text-[24px]">auto_awesome</span><span class="font-headline-sm text-headline-sm tracking-tight text-primary">Soirée</span></a><a class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high px-4 py-2 rounded-full transition-all" data-path="plan" href="#">Plan</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high px-4 py-2 rounded-full transition-all" data-path="budget" href="#">Budget</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high px-4 py-2 rounded-full transition-all" data-path="guests" href="#">Guests</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high px-4 py-2 rounded-full transition-all" data-path="vendors" href="#">Vendors</a><a class="font-label-md text-label-md bg-primary-container text-on-primary px-4 py-2 rounded-full transition-all shadow-sm" data-path="ideas" href="#">Ideas</a></nav><div class="flex items-center gap-5"><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" data-path="sign-in" href="#">Sign in</a><a class="relative transition-transform active:scale-95" data-path="user-profile" href="#"><div class="w-9 h-9 rounded-full bg-surface-container-high text-primary flex items-center justify-center ring-1 ring-[#5B2A86]/10 shadow-[0_2px_8px_rgba(91,42,134,0.06)]"><span class="material-symbols-outlined text-[20px]">person</span></div></a></div></div></header><main class="flex-1 w-full pt-20 bg-surface"><div class="flex flex-col w-full">
+<div class="max-w-[1120px] mx-auto w-full px-6 py-12 md:py-16 pb-28">
+<!-- Breadcrumb & Event Context Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+<div class="space-y-3">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-fixed/50 backdrop-blur-md">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-primary">Atelier Concierge Picks</span>
+</div>
+<div>
+<h1 class="font-headline-lg text-headline-lg text-primary tracking-tight">
+            Curated Celebration Ideas
+          </h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2 max-w-2xl">
+            Handpicked concepts aligned with your ₹15L budget and palace courtyard setting for Riya &amp; Arjun’s union at The Leela Palace, Jaipur.
+          </p>
+</div>
+</div>
+<!-- Quick Context Micro-Badge -->
+<div class="flex flex-col gap-2 self-start md:self-auto items-end"><div class="flex items-center gap-3 bg-surface-container-lowest/80 backdrop-blur-xl px-4 py-2.5 rounded-full shadow-sm"><span class="material-symbols-outlined text-primary text-[20px]" style="font-variation-settings: 'FILL' 1;">account_balance</span><div class="flex flex-col"><span class="font-label-sm text-label-sm text-on-surface-variant leading-none">Venue &amp; Window</span><span class="font-title-md text-title-md text-on-surface text-[13px] leading-tight font-semibold">Leela Palace • Feb 2027</span></div><div class="w-px h-6 bg-surface-container-highest mx-1"></div><div class="flex flex-col"><span class="font-label-sm text-label-sm text-on-surface-variant leading-none">Target Cap</span><span class="font-title-md text-title-md text-primary text-[13px] leading-tight font-bold">₹15,00,000</span></div></div><div class="hidden md:flex items-center gap-2 text-[11px] font-label-sm text-on-surface-variant bg-surface-container-lowest/70 backdrop-blur-md px-3 py-1 rounded-full"><span class="font-semibold text-primary">Allocations:</span><span class="">Venue ₹6.75L</span><span class="">•</span><span class="">Catering ₹3.8L</span><span class="">•</span><span class="">Decor ₹2.1L</span><span class="">•</span><span class="">Photo ₹1.15L</span><span class="">•</span><span class="">Music ₹0.4L</span><span class="">•</span><span class="">Buffer ₹0.8L</span></div></div>
+</div>
+<!-- Filter Pills Row -->
+<div class="flex items-center justify-between gap-4 pb-8 overflow-x-auto no-scrollbar">
+<div class="flex items-center gap-2.5">
+<button class="px-5 py-2 rounded-full font-label-md text-label-md bg-primary-container text-on-primary transition-all shadow-sm shadow-primary/10 hover:shadow-md hover:shadow-primary/20">
+          All Ideas
+        </button>
+<button class="px-5 py-2 rounded-full font-label-md text-label-md bg-surface-container-lowest/70 backdrop-blur-md text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-all">
+          Traditional
+        </button>
+<button class="px-5 py-2 rounded-full font-label-md text-label-md bg-surface-container-lowest/70 backdrop-blur-md text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-all">
+          Modern
+        </button>
+<button class="px-5 py-2 rounded-full font-label-md text-label-md bg-surface-container-lowest/70 backdrop-blur-md text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-all">
+          Minimal
+        </button>
+<button class="px-5 py-2 rounded-full font-label-md text-label-md bg-surface-container-lowest/70 backdrop-blur-md text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-all">
+          Outdoor
+        </button>
+</div>
+<!-- Quick Filter Metric -->
+<div class="hidden lg:flex items-center gap-2 text-on-surface-variant font-label-sm text-label-sm pr-1">
+<span class="material-symbols-outlined text-[16px] text-tertiary-container">tune</span>
+<span class="">Showing 6 high-affinity recommendations</span>
+</div>
+</div>
+<!-- 3-Column Core Grid of 6 Idea Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 md:gap-8">
+<!-- Card 1: THEME -->
+<article class="group flex flex-col bg-surface-container-lowest/75 backdrop-blur-2xl rounded-lg p-5 shadow-[0_8px_30px_rgba(91,42,134,0.04)] hover:shadow-[0_16px_40px_rgba(91,42,134,0.10)] transition-all duration-300">
+<div class="relative w-full h-56 rounded-[1.25rem] overflow-hidden bg-surface-container-high">
+<img class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out" data-alt="An opulent Rajasthani palace courtyard in Jaipur during sunset. Golden hour glows over sandstone arches, illuminated with warm brass candlelit lanterns and rich cascades of fresh orange marigold garlands. Soft plum and rose silks drape gracefully against architectural balconies, evocative of timeless Mewari elegance." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXBeofTDkv4IzdjbgELw-FmwMaPp3srcKo9Ci5211KEs49Rk3iXD1R9d2W2Wzh2nL7qmo9H07VV1KrZOTpjBOI6r98KGU9nVe6T_XyJcz3jatS5O_c46tJC7XwGQNXASAlEmEYQ9dOsN15UBkbCC5XbPh7bnj4WRkY9vgufnfaOY5rXQhWpruI1XZh9HJcSn3dWgTogqwj5v3GWco2haYYislbXYtPGgotX7_KB3mVJOvPHCq7mA2a1w">
+<div class="absolute top-3.5 left-3.5 bg-surface-container-lowest/90 backdrop-blur-md px-3 py-1 rounded-full shadow-sm">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-primary font-bold">Theme</span>
+</div>
+<div class="absolute top-3.5 right-3.5 bg-tertiary-container/90 backdrop-blur-md text-on-tertiary px-2.5 py-1 rounded-full flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-[14px]">auto_awesome</span>
+<span class="font-label-sm text-label-sm font-semibold">Concierge Top Pick</span>
+</div>
+</div>
+<div class="flex flex-col flex-1 pt-5">
+<h2 class="font-headline-sm text-headline-sm text-primary tracking-tight font-semibold">
+            Royal Marigold &amp; Antiqued Brass
+          </h2>
+<div class="flex items-start gap-2.5 mt-3 mb-6 bg-surface-container-low/70 p-3 rounded-DEFAULT">
+<span class="material-symbols-outlined text-tertiary-fixed-dim text-[18px] shrink-0 mt-0.5">savings</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-snug">
+              Uses local seasonal florals to save <span class="font-semibold text-on-surface">₹35,000</span> against imported blooms.
+            </p>
+</div>
+<div class="mt-auto pt-2 flex items-center justify-between gap-3">
+<button aria-label="Save idea to favorites" class="w-11 h-11 rounded-full flex items-center justify-center bg-surface-container-low text-on-surface-variant hover:text-secondary-container hover:bg-surface-container transition-all" onclick="this.classList.toggle('text-secondary-container'); this.querySelector('span').classList.toggle('fill-1');" type="button">
+<span class="material-symbols-outlined text-[20px] transition-transform active:scale-125">favorite</span>
+</button>
+<button class="flex-1 h-11 px-5 rounded-full bg-primary-container text-on-primary hover:bg-primary transition-all flex items-center justify-center gap-2 shadow-sm font-label-md text-label-md">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span class="">Add to plan</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Card 2: MENU -->
+<article class="group flex flex-col bg-surface-container-lowest/75 backdrop-blur-2xl rounded-lg p-5 shadow-[0_8px_30px_rgba(91,42,134,0.04)] hover:shadow-[0_16px_40px_rgba(91,42,134,0.10)] transition-all duration-300">
+<div class="relative w-full h-56 rounded-[1.25rem] overflow-hidden bg-surface-container-high">
+<img class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out" data-alt="Exquisite royal Mewari gastronomic feast served in gleaming hammered brass and kansa tableware. Curated fine dining tasting plates with authentic Rajasthani dal baati churma, gatte ke samose, smoked saffron gravies, and garnished edible rose petals in ambient candlelit courtyard setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDN8RY97TecLgwyL463bXx-yuj9qauNnzQQdvNUd2keYG7sXYh3GutbZiefbkT0fUyf_d-GF7hUSMmD_IwMCBRppv74FqaDBMoC3x33qH9W62zlMU6vShBiWf346xdo-OidmKml5_Ro7FgozcPCGFRxAN1_VAaQ_tGb-MtDfft8dfT4zBnCCQw9CrJiwDXnQAwL-y4KbV5unwGNDWj0UwqQctq7ZJc5ySpcDvuIfofExDrACqdD2p8LvQ">
+<div class="absolute top-3.5 left-3.5 bg-surface-container-lowest/90 backdrop-blur-md px-3 py-1 rounded-full shadow-sm">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-primary font-bold">Menu</span>
+</div>
+</div>
+<div class="flex flex-col flex-1 pt-5">
+<h2 class="font-headline-sm text-headline-sm text-primary tracking-tight font-semibold">
+            Bespoke Mewari Royal Feast
+          </h2>
+<div class="flex items-start gap-2.5 mt-3 mb-6 bg-surface-container-low/70 p-3 rounded-DEFAULT">
+<span class="material-symbols-outlined text-tertiary-fixed-dim text-[18px] shrink-0 mt-0.5">savings</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-snug">
+              Consolidates 6 live culinary stations within Leela’s inclusive venue banquet package.
+            </p>
+</div>
+<div class="mt-auto pt-2 flex items-center justify-between gap-3">
+<button aria-label="Save idea to favorites" class="w-11 h-11 rounded-full flex items-center justify-center bg-surface-container-low text-on-surface-variant hover:text-secondary-container hover:bg-surface-container transition-all" onclick="this.classList.toggle('text-secondary-container'); this.querySelector('span').classList.toggle('fill-1');" type="button">
+<span class="material-symbols-outlined text-[20px] transition-transform active:scale-125">favorite</span>
+</button>
+<button class="flex-1 h-11 px-5 rounded-full bg-primary-container text-on-primary hover:bg-primary transition-all flex items-center justify-center gap-2 shadow-sm font-label-md text-label-md">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span class="">Add to plan</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Card 3: DÉCOR -->
+<article class="group flex flex-col bg-surface-container-lowest/75 backdrop-blur-2xl rounded-lg p-5 shadow-[0_8px_30px_rgba(91,42,134,0.04)] hover:shadow-[0_16px_40px_rgba(91,42,134,0.10)] transition-all duration-300">
+<div class="relative w-full h-56 rounded-[1.25rem] overflow-hidden bg-surface-container-high">
+<img class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out" data-alt="Ethereal heritage mandap built right under an intricate sandstone palace jharokha balcony in Jaipur. Soft layered blush chiffon drapery, fairy lights suspended gracefully, antique brass floral urlis with floating lotus flowers, and micro-mirrored thikri wall art capturing ambient luminescence." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1dNRvFPX1tZqzWyYNRk5qPW7-HA0d-t_9zYFejhYRifOZCxsozB22Yu4pUv9AHhAHmbpCpiXmv7kgZSOTq9arterYjXq3E3PEp2VPDDtw4AsajDbk5EOIh6a1RxqIA0QBGfS5xbDw0q6UUYTT13fOKsYOSG3aXYUyfCLVWWAQPOODIqm8AES8GInEBzJD9O17nDudyAZCuM0TIJk6CseJGp4gMZlHKzCCDCcXfTpaJY53SC2C_ADNJA">
+<div class="absolute top-3.5 left-3.5 bg-surface-container-lowest/90 backdrop-blur-md px-3 py-1 rounded-full shadow-sm">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-primary font-bold">Décor</span>
+</div>
+</div>
+<div class="flex flex-col flex-1 pt-5">
+<h2 class="font-headline-sm text-headline-sm text-primary tracking-tight font-semibold">
+            Heritage Jharokha Mandap
+          </h2>
+<div class="flex items-start gap-2.5 mt-3 mb-6 bg-surface-container-low/70 p-3 rounded-DEFAULT">
+<span class="material-symbols-outlined text-tertiary-fixed-dim text-[18px] shrink-0 mt-0.5">savings</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-snug">
+              Reuses courtyard palace architecture, reducing structural rigging costs by <span class="font-semibold text-on-surface">20%</span>.
+            </p>
+</div>
+<div class="mt-auto pt-2 flex items-center justify-between gap-3">
+<button aria-label="Save idea to favorites" class="w-11 h-11 rounded-full flex items-center justify-center bg-surface-container-low text-on-surface-variant hover:text-secondary-container hover:bg-surface-container transition-all" onclick="this.classList.toggle('text-secondary-container'); this.querySelector('span').classList.toggle('fill-1');" type="button">
+<span class="material-symbols-outlined text-[20px] transition-transform active:scale-125">favorite</span>
+</button>
+<button class="flex-1 h-11 px-5 rounded-full bg-primary-container text-on-primary hover:bg-primary transition-all flex items-center justify-center gap-2 shadow-sm font-label-md text-label-md">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span class="">Add to plan</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Card 4: ENTERTAINMENT -->
+<article class="group flex flex-col bg-surface-container-lowest/75 backdrop-blur-2xl rounded-lg p-5 shadow-[0_8px_30px_rgba(91,42,134,0.04)] hover:shadow-[0_16px_40px_rgba(91,42,134,0.10)] transition-all duration-300">
+<div class="relative w-full h-56 rounded-[1.25rem] overflow-hidden bg-surface-container-high">
+<img class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out" data-alt="Traditional Rajasthani Manganiyar folk ensemble performing under starry Jaipur skies. Artists adorned in crisp white angrakha robes and saffron turbans play acoustic kamaicha, dholak, and khartal surrounded by glowing firepots and seated on traditional embroidered floor gaddas." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9cS1DlKJiY-Sma8En-giYpCRk3lfHrOE3m4SzcHxGy8RVsUKUmVboEBnLIOi4Ga4hB33moGcpyJN8l1rzI88t3OrWHhLz3UjimSNL-TImkcWGGdLEoTQ4h26EaqYzN4Ra059u75-TP-bFTlU7gT-AzBtVtrjvdY-XMyFQO2c616EQWO93Bi4013-1qlVYnLEsjYpb2fv9oo8fAhrjJlOWG1CX6LUCrF4qxNp9BU-D9FlDvy1YQRllXw">
+<div class="absolute top-3.5 left-3.5 bg-surface-container-lowest/90 backdrop-blur-md px-3 py-1 rounded-full shadow-sm">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-primary font-bold">Entertainment</span>
+</div>
+</div>
+<div class="flex flex-col flex-1 pt-5">
+<h2 class="font-headline-sm text-headline-sm text-primary tracking-tight font-semibold">
+            Acoustic Manganiyar Troupe
+          </h2>
+<div class="flex items-start gap-2.5 mt-3 mb-6 bg-surface-container-low/70 p-3 rounded-DEFAULT">
+<span class="material-symbols-outlined text-tertiary-fixed-dim text-[18px] shrink-0 mt-0.5">savings</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-snug">
+              Authentic local artist collective at <span class="font-semibold text-on-surface">₹60,000</span> under heavy DJ production overhead.
+            </p>
+</div>
+<div class="mt-auto pt-2 flex items-center justify-between gap-3">
+<button aria-label="Save idea to favorites" class="w-11 h-11 rounded-full flex items-center justify-center bg-surface-container-low text-on-surface-variant hover:text-secondary-container hover:bg-surface-container transition-all" onclick="this.classList.toggle('text-secondary-container'); this.querySelector('span').classList.toggle('fill-1');" type="button">
+<span class="material-symbols-outlined text-[20px] transition-transform active:scale-125">favorite</span>
+</button>
+<button class="flex-1 h-11 px-5 rounded-full bg-primary-container text-on-primary hover:bg-primary transition-all flex items-center justify-center gap-2 shadow-sm font-label-md text-label-md">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span class="">Add to plan</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Card 5: INVITATIONS -->
+<article class="group flex flex-col bg-surface-container-lowest/75 backdrop-blur-2xl rounded-lg p-5 shadow-[0_8px_30px_rgba(91,42,134,0.04)] hover:shadow-[0_16px_40px_rgba(91,42,134,0.10)] transition-all duration-300">
+<div class="relative w-full h-56 rounded-[1.25rem] overflow-hidden bg-surface-container-high">
+<img class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out" data-alt="Editorial flatlay of handmade textured deckle-edge wedding stationery suite. Delicate gold foil calligraphy, custom botanical jaali motifs, deep plum raw silk ribbons, and an authentic embossed wax seal stamped with an elegant monogram resting beside dried jasmine sprigs." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-OZ2UnBWyB5DjHqkNXSC9E68WjzuijBw1pWGSa_tQHKqndNepLaDIYnBhoqmkBTxnW7CzcyYkHLiYSOqakNABcMAD0q6vhSkCQXw9zS-Arf2deWnRHIF52ZL1ZZvi7mI6P_zy5-Rc1ve8TybK7NQ82UbEk8WoHHJT61cT-XDpTXJrPzn1FhrzI733pb3_LBkfmNHexq032UC4H_w4D6C771-Zvh0f5qSvQL1YLNjL2IotUWsEWKaSMw">
+<div class="absolute top-3.5 left-3.5 bg-surface-container-lowest/90 backdrop-blur-md px-3 py-1 rounded-full shadow-sm">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-primary font-bold">Invitations</span>
+</div>
+</div>
+<div class="flex flex-col flex-1 pt-5">
+<h2 class="font-headline-sm text-headline-sm text-primary tracking-tight font-semibold">
+            Botanical Gold Foil &amp; E-Suite
+          </h2>
+<div class="flex items-start gap-2.5 mt-3 mb-6 bg-surface-container-low/70 p-3 rounded-DEFAULT">
+<span class="material-symbols-outlined text-tertiary-fixed-dim text-[18px] shrink-0 mt-0.5">savings</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-snug">
+              Hybrid print-and-WhatsApp digital suite keeps total stationery under <span class="font-semibold text-on-surface">₹30,000</span>.
+            </p>
+</div>
+<div class="mt-auto pt-2 flex items-center justify-between gap-3">
+<button aria-label="Save idea to favorites" class="w-11 h-11 rounded-full flex items-center justify-center bg-surface-container-low text-on-surface-variant hover:text-secondary-container hover:bg-surface-container transition-all" onclick="this.classList.toggle('text-secondary-container'); this.querySelector('span').classList.toggle('fill-1');" type="button">
+<span class="material-symbols-outlined text-[20px] transition-transform active:scale-125">favorite</span>
+</button>
+<button class="flex-1 h-11 px-5 rounded-full bg-primary-container text-on-primary hover:bg-primary transition-all flex items-center justify-center gap-2 shadow-sm font-label-md text-label-md">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span class="">Add to plan</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Card 6: RETURN GIFTS -->
+<article class="group flex flex-col bg-surface-container-lowest/75 backdrop-blur-2xl rounded-lg p-5 shadow-[0_8px_30px_rgba(91,42,134,0.04)] hover:shadow-[0_16px_40px_rgba(91,42,134,0.10)] transition-all duration-300">
+<div class="relative w-full h-56 rounded-[1.25rem] overflow-hidden bg-surface-container-high">
+<img class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out" data-alt="Curated artisanal wedding favor gift boxes. Indigo and turquoise hand-painted Jaipur blue pottery trinket jars, paired with organic Kashmiri saffron tea tins and brass tea spoons nestled in hand-pressed block-print cotton pouches tied with golden thread." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPBJUJ2ttaY9FMxVfrwpHn-NsMGMNRY2m1TUazYV-_oCYty3z7i1_9AP5IsWsF1zp0Jv9gGD5FA0-oyEV8JsO-cIZ0wASpJ5IzVFWlSgxxXczDFndLzjfV9SlU-E8l8APi2zGGES7tb8XAtfoEm6z4V7Qr8DtQWmA85R7AsGiSNZd_jwnjApWn5ely61UF8ia3VTe2-0XXWHxjZIGIiDUQhIMrtQsszRi42PSIdxtoX05VXB9yJelyLQ">
+<div class="absolute top-3.5 left-3.5 bg-surface-container-lowest/90 backdrop-blur-md px-3 py-1 rounded-full shadow-sm">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-primary font-bold">Return Gifts</span>
+</div>
+</div>
+<div class="flex flex-col flex-1 pt-5">
+<h2 class="font-headline-sm text-headline-sm text-primary tracking-tight font-semibold">Artisanal Blue Pottery &amp; Keepsakes</h2>
+<div class="flex items-start gap-2.5 mt-3 mb-6 bg-surface-container-low/70 p-3 rounded-DEFAULT">
+<span class="material-symbols-outlined text-tertiary-fixed-dim text-[18px] shrink-0 mt-0.5">savings</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-snug">
+              Direct sourcing from Jaipur artisan guilds at <span class="font-semibold text-on-surface">₹450</span> per curated guest favor.
+            </p>
+</div>
+<div class="mt-auto pt-2 flex items-center justify-between gap-3">
+<button aria-label="Save idea to favorites" class="w-11 h-11 rounded-full flex items-center justify-center bg-surface-container-low text-on-surface-variant hover:text-secondary-container hover:bg-surface-container transition-all" onclick="this.classList.toggle('text-secondary-container'); this.querySelector('span').classList.toggle('fill-1');" type="button">
+<span class="material-symbols-outlined text-[20px] transition-transform active:scale-125">favorite</span>
+</button>
+<button class="flex-1 h-11 px-5 rounded-full bg-primary-container text-on-primary hover:bg-primary transition-all flex items-center justify-center gap-2 shadow-sm font-label-md text-label-md">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span class="">Add to plan</span>
+</button>
+</div>
+</div>
+</article>
+</div>
+<!-- Concierge Advisory Note -->
+<div class="mt-16 p-8 rounded-lg bg-surface-container-lowest/60 backdrop-blur-xl flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm">
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 rounded-full bg-primary-fixed flex items-center justify-center text-primary shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[24px]">verified</span>
+</div>
+<div>
+<h3 class="font-title-lg text-title-lg text-primary tracking-tight font-bold">
+            Tailored to The Leela Palace Courtyard
+          </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 max-w-xl">
+            All vendor and décor items shown adhere to the courtyard preservation guidelines, zero-flame municipal statutes, and verified local artisan schedules.
+          </p>
+</div>
+</div>
+<button class="whitespace-nowrap px-6 py-3 rounded-full font-label-md text-label-md bg-surface-container-high text-primary hover:bg-primary hover:text-on-primary transition-all shadow-sm">
+        Request Custom Moodboard
+      </button>
+</div>
+</div>
+<!-- Floating Ask AI Button -->
+<aside class="fixed z-40" style="bottom: 24px; right: 24px;"><button class="flex items-center gap-2.5 px-6 py-3.5 rounded-full bg-gradient-to-r from-primary-container via-primary to-secondary-container text-on-primary shadow-[0_12px_36px_rgba(91,42,134,0.30)] hover:shadow-[0_16px_48px_rgba(91,42,134,0.40)] hover:scale-[1.03] active:scale-[0.98] transition-all duration-300" id="askAiBtn"><span class="material-symbols-outlined text-[20px] text-tertiary-fixed">auto_awesome</span><span class="font-label-md text-label-md font-semibold tracking-wide">Ask Concierge AI</span></button></aside>
+</div>
+<script>
+  // Ensure the top nav reflects "Ideas" as the active route
+  (function setActiveNavTab() {
+    const navLinks = document.querySelectorAll('header nav a[data-path]');
+    navLinks.forEach(link => {
+      const isIdeas = link.getAttribute('data-path') === 'ideas';
+      if (isIdeas) {
+        link.className = 'font-label-md text-label-md bg-primary-container text-on-primary px-4 py-2 rounded-full transition-all shadow-sm';
+      } else {
+        link.className = 'font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high px-4 py-2 rounded-full transition-all';
+      }
+    });
+  })();
+</script></main><footer class="w-full bg-surface-container-low/70 border-t border-[#5B2A86]/[0.06] mt-auto"><div class="max-w-[1120px] mx-auto px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-6"><div class="flex items-center gap-3"><span class="font-headline-sm text-headline-sm tracking-tight text-primary">Soirée</span><span class="font-body-sm text-body-sm text-on-surface-variant">© 2026 Soirée Atelier Inc. All rights reserved.</span></div><nav class="flex items-center gap-8"><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" data-path="privacy" href="#">Privacy</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" data-path="terms" href="#">Terms</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" data-path="concierge-support" href="#">Concierge Support</a></nav></div></footer>
+
+</body></html>

@@ -1,0 +1,58 @@
+[
+  {
+    "region": "Jaipur",
+    "event_type": "wedding",
+    "category": "Venue & Stay",
+    "min_cost": 500000,
+    "max_cost": 1500000,
+    "unit": "package (2 nights)"
+  },
+  {
+    "region": "Jaipur",
+    "event_type": "wedding",
+    "category": "Catering & Banquet",
+    "min_cost": 2000,
+    "max_cost": 4500,
+    "unit": "per plate"
+  },
+  {
+    "region": "Jaipur",
+    "event_type": "wedding",
+    "category": "Décor & Ambiance",
+    "min_cost": 150000,
+    "max_cost": 600000,
+    "unit": "full setup"
+  },
+  {
+    "region": "Jaipur",
+    "event_type": "wedding",
+    "category": "Photography & Cinematography",
+    "min_cost": 100000,
+    "max_cost": 300000,
+    "unit": "package"
+  },
+  {
+    "region": "Jaipur",
+    "event_type": "wedding",
+    "category": "Music & Entertainment",
+    "min_cost": 40000,
+    "max_cost": 180000,
+    "unit": "troupe / DJ"
+  },
+  {
+    "region": "Jaipur",
+    "event_type": "birthday",
+    "category": "Venue & Lounge",
+    "min_cost": 50000,
+    "max_cost": 250000,
+    "unit": "evening hire"
+  },
+  {
+    "region": "Jaipur",
+    "event_type": "birthday",
+    "category": "Catering & Bar",
+    "min_cost": 1200,
+    "max_cost": 2800,
+    "unit": "per guest"
+  }
+]

@@ -1,0 +1,34 @@
+[
+  {
+    "region": "Delhi",
+    "event_type": "wedding",
+    "category": "Venue & Stay",
+    "min_cost": 700000,
+    "max_cost": 2200000,
+    "unit": "farmhouse / banquet"
+  },
+  {
+    "region": "Delhi",
+    "event_type": "wedding",
+    "category": "Catering & Banquet",
+    "min_cost": 2200,
+    "max_cost": 5000,
+    "unit": "per plate"
+  },
+  {
+    "region": "Delhi",
+    "event_type": "wedding",
+    "category": "Décor & Ambiance",
+    "min_cost": 200000,
+    "max_cost": 800000,
+    "unit": "full setup"
+  },
+  {
+    "region": "Delhi",
+    "event_type": "wedding",
+    "category": "Photography & Cinematography",
+    "min_cost": 120000,
+    "max_cost": 350000,
+    "unit": "package"
+  }
+]

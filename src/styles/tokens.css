@@ -1,0 +1,71 @@
+/* Soirée Design Tokens — Extracted from Google Stitch (Luminous Celebration Atelier) */
+
+:root {
+  /* Brand Primaries */
+  --color-primary: #430d6e;
+  --color-primary-container: #5b2a86;
+  --color-on-primary: #ffffff;
+  --color-on-primary-container: #cf9afd;
+  --color-primary-fixed: #f1daff;
+  --color-primary-fixed-dim: #dfb7ff;
+
+  /* Brand Accents */
+  --color-secondary: #ae2f34;
+  --color-secondary-container: #ff6b6b; /* Coral Blossom */
+  --color-on-secondary: #ffffff;
+  --color-secondary-fixed: #ffdad8;
+
+  /* Gold & Warm Accents */
+  --color-tertiary: #3e2900;
+  --color-tertiary-container: #5a3e00;
+  --color-tertiary-fixed: #ffdeab;
+  --color-tertiary-fixed-dim: #f9bc4d; /* Champagne Gold */
+
+  /* Semantic Feedback */
+  --color-success: #3ddc97; /* Mint Leaf */
+  --color-warning: #f5b94a;
+  --color-error: #ba1a1a;
+  --color-error-container: #ffdad6;
+
+  /* Neutrals & Surfaces (Warm Paper/Vellum) */
+  --color-surface: #fff8f3; /* Champagne Blush / Alabaster */
+  --color-surface-dim: #dfd9d4;
+  --color-surface-bright: #fff8f3;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f9f2ed;
+  --color-surface-container: #f3ede8;
+  --color-surface-container-high: #eee7e2;
+  --color-surface-container-highest: #e8e1dc;
+
+  /* Text & Inks */
+  --color-on-surface: #1d1b18;
+  --color-on-surface-variant: #4c4450;
+  --color-outline: #7d7481;
+  --color-outline-variant: #cec3d2;
+
+  /* Glassmorphic Overlays */
+  --glass-card: rgba(255, 255, 255, 0.78);
+  --glass-border: rgba(91, 42, 134, 0.08);
+  --glass-blur: blur(20px);
+}
+
+/* Dark Theme Adaptations */
+.dark {
+  --color-surface: #1a1024; /* Deep Night Aubergine */
+  --color-surface-dim: #140b1d;
+  --color-surface-bright: #241830;
+  --color-surface-container-lowest: #140b1d;
+  --color-surface-container-low: #1e1329;
+  --color-surface-container: #261b33;
+  --color-surface-container-high: #2f233d;
+  --color-surface-container-highest: #3b2e4b;
+
+  --color-on-surface: #f7f2fa;
+  --color-on-surface-variant: #cec3d2;
+  --color-outline: #978e9c;
+  --color-outline-variant: #4c4450;
+
+  --glass-card: rgba(255, 255, 255, 0.06);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --glass-blur: blur(24px);
+}

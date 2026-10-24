@@ -1,0 +1,156 @@
+<!DOCTYPE html><html class="scroll-smooth" lang="en" style=""><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_standard" name="shell-type"><title>Soirée — Celebratory Event Architecture</title><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "inverse-on-surface": "#f6efeb", "surface-tint": "#7847a4", "primary": "#430d6e", "on-error": "#ffffff", "outline": "#7d7481", "surface": "#fff8f3", "secondary": "#ae2f34", "error": "#ba1a1a", "on-error-container": "#93000a", "tertiary": "#3e2900", "secondary-fixed-dim": "#ffb3b0", "surface-variant": "#e8e1dc", "on-primary-fixed": "#2d004f", "primary-fixed-dim": "#dfb7ff", "inverse-surface": "#33302d", "surface-container": "#f3ede8", "surface-container-highest": "#e8e1dc", "on-tertiary": "#ffffff", "primary-fixed": "#f1daff", "on-secondary": "#ffffff", "on-secondary-container": "#6d0010", "surface-bright": "#fff8f3", "on-surface": "#1d1b18", "inverse-primary": "#dfb7ff", "tertiary-fixed-dim": "#f9bc4d", "on-secondary-fixed-variant": "#8c1520", "on-primary": "#ffffff", "on-tertiary-fixed": "#271900", "on-surface-variant": "#4c4450", "surface-container-high": "#eee7e2", "error-container": "#ffdad6", "on-tertiary-fixed-variant": "#5f4100", "secondary-fixed": "#ffdad8", "surface-container-low": "#f9f2ed", "outline-variant": "#cec3d2", "surface-container-lowest": "#ffffff", "surface-dim": "#dfd9d4", "on-tertiary-container": "#e0a639", "on-primary-container": "#cf9afd", "tertiary-container": "#5a3e00", "tertiary-fixed": "#ffdeab", "background": "#fff8f3", "primary-container": "#5b2a86", "secondary-container": "#ff6b6b", "on-secondary-fixed": "#410006", "on-background": "#1d1b18", "on-primary-fixed-variant": "#5f2e8a" }, "borderRadius": { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" }, "spacing": { "gutter": "1.5rem", "space-md": "1.25rem", "space-lg": "2rem", "space-sm": "0.75rem", "space-xs": "0.375rem", "gutter-mobile": "1rem", "space-xl": "3.5rem", "margin-mobile": "1.25rem", "margin": "3rem" }, "fontFamily": { "headline-md": ["Newsreader"], "headline-lg": ["Newsreader"], "headline-sm": ["Newsreader"], "label-sm": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"], "title-lg": ["Plus Jakarta Sans"], "display-mobile": ["Newsreader"], "body-lg": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "headline-lg-mobile": ["Newsreader"], "title-md": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "display": ["Newsreader"] }, "fontSize": { "headline-md": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "headline-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "headline-sm": ["22px", { "lineHeight": "30px", "letterSpacing": "0em", "fontWeight": "600" }], "label-sm": ["11px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600" }], "body-sm": ["13px", { "lineHeight": "20px", "letterSpacing": "0.005em", "fontWeight": "400" }], "title-lg": ["18px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "700" }], "display-mobile": ["38px", { "lineHeight": "44px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "body-lg": ["18px", { "lineHeight": "28px", "letterSpacing": "0em", "fontWeight": "400" }], "body-md": ["15px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400" }], "headline-lg-mobile": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "title-md": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "600" }], "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }], "display": ["56px", { "lineHeight": "64px", "letterSpacing": "-0.02em", "fontWeight": "600" }] } } } };</script></head><body class="bg-surface font-body-md text-on-surface antialiased min-h-screen flex flex-col pb-24"><header class="fixed top-0 left-0 right-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-b border-[#5B2A86]/[0.06] shadow-[0_1px_8px_rgba(91,42,134,0.03)]"><div class="h-20 max-w-[1120px] mx-auto px-6 flex items-center justify-between"><div class="flex items-center gap-3"><a class="flex items-center gap-3 transition-opacity hover:opacity-90" data-path="home" href="#"><span class="material-symbols-outlined text-primary text-[24px]">auto_awesome</span><span class="font-headline-sm text-headline-sm tracking-tight text-primary">Soirée</span></a></div><nav class="hidden md:flex items-center gap-1.5" data-active-classes="bg-primary-container text-on-primary font-title-md"><a class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high px-4 py-2 rounded-full transition-all" data-path="home" href="#"><span class="material-symbols-outlined text-primary text-[24px]">auto_awesome</span><span class="font-headline-sm text-headline-sm tracking-tight text-primary">Soirée</span></a><a class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high px-4 py-2 rounded-full transition-all" data-path="plan" href="#">Plan</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high px-4 py-2 rounded-full transition-all" data-path="budget" href="#">Budget</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high px-4 py-2 rounded-full transition-all" data-path="guests" href="#">Guests</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high px-4 py-2 rounded-full transition-all" data-path="vendors" href="#">Vendors</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high px-4 py-2 rounded-full transition-all" data-path="ideas" href="#">Ideas</a></nav><div class="flex items-center gap-5"><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" data-path="sign-in" href="#">Sign in</a><a class="relative transition-transform active:scale-95" data-path="user-profile" href="#"><div class="w-9 h-9 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors ring-1 ring-[#5B2A86]/10"><span class="material-symbols-outlined text-[20px]">person</span></div></a></div></div></header><main class="flex-1 w-full pt-20 bg-surface"><div class="flex flex-col w-full relative min-h-[calc(100vh-5rem)]">
+<!-- Underlay: Simulated Soirée Plan Overview Page (Intentionally softened & blurred) -->
+<div aria-hidden="true" class="w-full max-w-[1120px] mx-auto px-6 py-8 grid grid-cols-12 gap-6 opacity-40 blur-[2px] pointer-events-none select-none">
+<!-- Header of Plan Overview -->
+<div class="col-span-12 flex items-baseline justify-between mb-2">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Autumn Solstice Celebration</span>
+<h1 class="font-headline-lg text-headline-lg text-primary mt-1">Villa Florentine Atelier</h1>
+</div>
+<div class="flex gap-2">
+<span class="px-4 py-2 rounded-full bg-surface-container-high text-on-surface text-label-md font-label-md">October 18, 2025</span>
+<span class="px-4 py-2 rounded-full bg-primary-fixed text-on-primary-fixed text-label-md font-label-md">84 Guests</span>
+</div>
+</div>
+<!-- Bento Overview Grid (Blurred Background Decor) -->
+<div class="col-span-12 lg:col-span-8 space-y-6">
+<div class="bg-surface-container-lowest rounded-lg p-8 shadow-sm">
+<div class="flex items-center justify-between mb-4">
+<h2 class="font-title-lg text-title-lg text-primary">Master Itinerary</h2>
+<span class="text-label-sm font-label-sm text-on-surface-variant">6 Milestones Scheduled</span>
+</div>
+<div class="space-y-4">
+<div class="flex items-center gap-4 p-4 rounded-DEFAULT bg-surface-container-low">
+<span class="font-label-md text-label-md text-primary font-bold">16:30</span>
+<div class="flex-1">
+<p class="font-title-md text-title-md text-on-surface">Arrival &amp; Botanical Champagne Welcome</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Cypress Court &amp; Herb Garden</p>
+</div>
+<span class="material-symbols-outlined text-outline">check_circle</span>
+</div>
+<div class="flex items-center gap-4 p-4 rounded-DEFAULT bg-surface-container-low">
+<span class="font-label-md text-label-md text-primary font-bold">18:00</span>
+<div class="flex-1">
+<p class="font-title-md text-title-md text-on-surface">Twilight Vow Exchange &amp; String Quartet</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">The Terrace Pavilion</p>
+</div>
+<span class="material-symbols-outlined text-outline">schedule</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-6">
+<div class="bg-surface-container-lowest rounded-lg p-6 shadow-sm">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Budget Allocation</span>
+<p class="font-headline-md text-headline-md text-primary mt-1">$48,200 <span class="font-body-sm text-body-sm text-on-surface-variant">of $60k</span></p>
+<div class="w-full bg-surface-container-high h-2 rounded-full mt-3 overflow-hidden">
+<div class="bg-primary-container h-full w-[80%] rounded-full"></div>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-lg p-6 shadow-sm">
+<span class="font-label-sm text-label-sm text-on-surface-variant">RSVP Response</span>
+<p class="font-headline-md text-headline-md text-primary mt-1">72 <span class="font-body-sm text-body-sm text-on-surface-variant">Confirmed</span></p>
+<div class="w-full bg-surface-container-high h-2 rounded-full mt-3 overflow-hidden">
+<div class="bg-secondary-container h-full w-[85%] rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="col-span-12 lg:col-span-4 space-y-6">
+<div class="bg-surface-container-lowest rounded-lg p-6 shadow-sm">
+<h3 class="font-title-md text-title-md text-primary mb-3">Palette &amp; Atmosphere</h3>
+<div class="flex gap-2 mb-4">
+<div class="w-10 h-10 rounded-full bg-primary shadow-inner"></div>
+<div class="w-10 h-10 rounded-full bg-secondary-container shadow-inner"></div>
+<div class="w-10 h-10 rounded-full bg-tertiary-fixed shadow-inner"></div>
+<div class="w-10 h-10 rounded-full bg-surface-container-highest shadow-inner"></div>
+</div>
+<div class="w-full h-32 rounded-DEFAULT overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Warm candlelit autumn tablescape with artisanal glassware, linen napkins, plum florals, and hand-lettered paper stationery in soft ambient light." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLIOx8HWJc9RLpqyMcq_6KhPzJked0Hj5PQo7XF0_OIGcv082e1cDmmGGaGNjXfzmY60lTGy3GlZcoc6LH12KGLZ5wbWfzLE0D4toIsvujv1kLnCTJYBUBbI8SGg4iYN3P4gZJJSwTFks-OcFrb5eNS8BSCr6wd4aKWvsJJvfS0J9x4LxtVyiM_it5s5BRbynooFN96n01BWKMa2MpsaTOwG5tsUH1oUhur2YmHHO1q52a0Sn0Q4GqAQ">
+</div>
+</div>
+</div>
+</div>
+<!-- Modal Backdrop Overlay: Atmospheric Tint with Blur -->
+<div class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 backdrop-blur-md transition-all duration-300" id="modal-container" style="background-color: rgba(255, 255, 255, 0.4);">
+<!-- Modal Card -->
+<div aria-labelledby="modal-headline" aria-modal="true" class="relative w-full max-w-[430px] rounded-lg bg-surface-container-lowest p-8 sm:p-10 shadow-[0_24px_64px_-12px_rgba(67,13,110,0.18),0_4px_16px_rgba(67,13,110,0.06)] flex flex-col items-center text-center transition-all" role="dialog">
+<!-- Close Button -->
+<button aria-label="Close dialog" class="absolute top-5 right-5 w-8 h-8 rounded-full flex items-center justify-center text-on-surface-variant hover:text-primary hover:bg-surface-container transition-all active:scale-95 focus:outline-none" id="close-modal-btn">
+<span class="material-symbols-outlined text-headline-sm leading-none">close</span>
+</button>
+<!-- Luxury Celebration Graphic Mark -->
+<div class="w-16 h-16 mb-6 flex items-center justify-center relative">
+<svg class="w-full h-full text-primary" fill="none" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
+<!-- Central Soft Radiant Star -->
+<path d="M36 12C36.8 24 40 27.2 52 28C40 28.8 36.8 32 36 44C35.2 32 32 28.8 20 28C32 27.2 35.2 24 36 12Z" fill="#5B2A86" fill-opacity="0.9"></path>
+<!-- Secondary Warm Champagne Diamond Accent -->
+<path d="M52 14L54.5 20L60.5 22.5L54.5 25L52 31L49.5 25L43.5 22.5L49.5 20L52 14Z" fill="#F9BC4D"></path>
+<!-- Terracotta Warm Sparklet -->
+<circle cx="21" cy="46" fill="#FF6B6B" fill-opacity="0.85" r="3"></circle>
+<!-- Delicate Floating Confetti Shapes -->
+<rect fill="#AE2F34" fill-opacity="0.6" height="4.5" rx="1.5" transform="rotate(28 47 45)" width="4.5" x="47" y="45"></rect>
+<circle cx="22" cy="18" fill="#DFB7FF" r="2.2"></circle>
+<circle cx="56" cy="38" fill="#F9BC4D" r="1.8"></circle>
+<circle cx="36" cy="56" fill="#5B2A86" fill-opacity="0.4" r="2.5"></circle>
+<!-- Tiny Ambient Spark -->
+<path d="M15 32L16.2 35.2L19.4 36.4L16.2 37.6L15 40.8L13.8 37.6L10.6 36.4L13.8 35.2L15 32Z" fill="#F9BC4D" fill-opacity="0.75"></path>
+</svg>
+</div>
+<!-- Modal Title -->
+<h2 class="font-headline-md text-headline-md text-primary tracking-tight mb-2" id="modal-headline">
+        Save your plan
+      </h2>
+<!-- Exactly One Supporting Sentence -->
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-[320px] mb-8 leading-relaxed">
+        Keep your itinerary, guest list, and budget synced across devices.
+      </p>
+<!-- Continue with Google Button -->
+<button class="w-full h-12 px-6 rounded-full bg-surface-container-lowest hover:bg-surface-container-low transition-all duration-200 flex items-center justify-center gap-3 shadow-[0_2px_8px_rgba(67,13,110,0.06)] active:scale-[0.99] focus:outline-none">
+<!-- Standard Google 'G' Mark -->
+<svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
+<path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path>
+<path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05"></path>
+<path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" fill="#EA4335"></path>
+</svg>
+<span class="font-title-md text-title-md text-on-surface font-medium">Continue with Google</span>
+</button>
+<!-- Dismiss Link -->
+<button class="mt-5 font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors focus:outline-none" id="dismiss-link">
+        Maybe later
+      </button>
+</div>
+</div>
+</div>
+<script>
+  (function() {
+    const modal = document.getElementById('modal-container');
+    const closeBtn = document.getElementById('close-modal-btn');
+    const dismissLink = document.getElementById('dismiss-link');
+
+    function closeModal() {
+      if (!modal) return;
+      modal.classList.add('opacity-0', 'pointer-events-none');
+      setTimeout(() => {
+        modal.style.display = 'none';
+      }, 250);
+    }
+
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+    if (dismissLink) dismissLink.addEventListener('click', closeModal);
+
+    // Optional click outside modal card to close
+    if (modal) {
+      modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+          closeModal();
+        }
+      });
+    }
+  })();
+</script><button class="fixed bottom-6 right-6 z-40 flex items-center gap-2.5 px-5 py-3 rounded-full bg-primary text-on-primary shadow-lg hover:opacity-90 active:scale-95 transition-all duration-200 focus:outline-none"><span class="material-symbols-outlined text-[20px]">sparkles</span><span class="font-title-md text-[15px] font-medium">Ask AI</span></button></main><footer class="w-full bg-surface-container-low/70 border-t border-[#5B2A86]/[0.06] mt-auto"><div class="max-w-[1120px] mx-auto px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-6"><div class="flex items-center gap-3"><span class="font-headline-sm text-headline-sm tracking-tight text-primary">Soirée</span><span class="font-body-sm text-body-sm text-on-surface-variant">© 2026 Soirée Atelier Inc. All rights reserved.</span></div><nav class="flex items-center gap-8"><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" data-path="privacy" href="#">Privacy</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" data-path="terms" href="#">Terms</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" data-path="concierge-support" href="#">Concierge Support</a></nav></div></footer>
+
+</body></html>
