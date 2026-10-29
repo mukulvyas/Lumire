@@ -307,7 +307,11 @@ Provide the PlanPatch operations:"""
                 changeType="added"
             ))
 
+    if not patch.summary:
+        patch.summary = patch.reasoning
+
     return RevisePlanResult(
+        success=True,
         patch=patch,
         diffs=diffs,
         proposedSnapshot=proposed

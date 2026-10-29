@@ -24,6 +24,7 @@ PatchOperation = Union[SetBudgetTotalOp, RebalanceCategoryOp, ReplaceThemeOp, Ad
 
 class PlanPatch(BaseModel):
     reasoning: str
+    summary: Optional[str] = None
     operations: List[PatchOperation]
 
 class PlanDiffItem(BaseModel):
@@ -33,6 +34,7 @@ class PlanDiffItem(BaseModel):
     changeType: Literal["modified", "added", "removed"]
 
 class RevisePlanResult(BaseModel):
+    success: bool = True
     patch: PlanPatch
     diffs: List[PlanDiffItem]
     proposedSnapshot: dict

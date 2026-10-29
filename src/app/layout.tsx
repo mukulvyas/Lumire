@@ -27,6 +27,11 @@ export const metadata: Metadata = {
   applicationName: 'Soirée',
   authors: [{ name: 'Soirée' }],
   keywords: ['event planner', 'wedding planner', 'birthday planner', 'AI event planner', 'celebration planner', 'budget planner'],
+  manifest: '/manifest.json',
+  icons: {
+    icon: '/icon.svg',
+    apple: '/icon.svg',
+  },
   openGraph: {
     title: 'Soirée — GenAI Event Planner',
     description: 'Plan any celebration, beautifully.',

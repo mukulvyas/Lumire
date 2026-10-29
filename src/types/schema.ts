@@ -10,7 +10,7 @@ export interface EventModel {
   total_budget: string | number;
   currency: string;
   locale: string;
-  preferences: Record<string, any>;
+  preferences: Record<string, unknown>;
   status: string;
   created_at: string | Date;
   updated_at: string | Date;
@@ -55,7 +55,7 @@ export interface VendorModel {
   status: 'contacted' | 'quoted' | 'confirmed' | 'paid' | string;
   quote_amount: string | number;
   note?: string | null;
-  contact?: Record<string, any>;
+  contact?: Record<string, unknown>;
   created_at?: string | Date;
 }
 
@@ -111,9 +111,10 @@ export interface PlanDiffItem {
 
 export interface PlanPatch {
   reasoning: string;
+  summary?: string;
   operations: Array<{
     type: string;
-    [key: string]: any;
+    [key: string]: unknown;
   }>;
 }
 

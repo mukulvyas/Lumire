@@ -97,18 +97,29 @@ export function VendorKanbanManager({
     }
   }
 
-  function handleStatusChange(vendorId: string, newStatus: string) {
+  async function handleStatusChange(vendorId: string, newStatus: string) {
     setVendorList((prev) =>
       prev.map((v) => (v.id === vendorId ? { ...v, status: newStatus } : v))
     );
+
+    try {
+      await fetch(`/api/vendors/${vendorId}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status: newStatus }),
+      });
+    } catch (err) {
+      console.warn('Vendor status update offline sync:', err);
+    }
   }
 
-  function handleAddVendor(e: React.FormEvent) {
+  async function handleAddVendor(e: React.FormEvent) {
     e.preventDefault();
     if (!newVendorName.trim()) return;
 
+    const tempId = `v-${Date.now()}`;
     const newV: typeof vendors.$inferSelect = {
-      id: `v-${Date.now()}`,
+      id: tempId,
       event_id: _eventId,
       name: newVendorName.trim(),
       category: newCategory,
@@ -122,6 +133,32 @@ export function VendorKanbanManager({
     setVendorList((prev) => [...prev, newV]);
     setNewVendorName('');
     setShowAddModal(false);
+
+    try {
+      const res = await fetch('/api/vendors', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          event_id: _eventId,
+          name: newV.name,
+          category: newV.category,
+          status: newV.status,
+          quote_amount: Number(newV.quote_amount),
+          note: newV.note,
+          contact: newV.contact,
+        }),
+      });
+      if (res.ok) {
+        const data = await res.json();
+        if (data.vendor?.id) {
+          setVendorList((prev) =>
+            prev.map((v) => (v.id === tempId ? { ...v, id: data.vendor.id } : v))
+          );
+        }
+      }
+    } catch (err) {
+      console.warn('Vendor creation offline sync:', err);
+    }
   }
 
   function toggleQuestionAnswer(index: number) {

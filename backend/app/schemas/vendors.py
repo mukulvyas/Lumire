@@ -18,3 +18,20 @@ class VendorQuestionItem(BaseModel):
 
 class VendorQuestionsResponse(BaseModel):
     questions: List[VendorQuestionItem] = Field(min_length=2)
+
+class VendorCreateRequest(BaseModel):
+    event_id: str
+    name: str
+    category: str
+    quote_amount: Optional[float] = 0.0
+    status: Optional[str] = "contacted"
+    note: Optional[str] = None
+    contact: Optional[Dict[str, Any]] = Field(default_factory=dict)
+
+class VendorUpdateRequest(BaseModel):
+    name: Optional[str] = None
+    category: Optional[str] = None
+    quote_amount: Optional[float] = None
+    status: Optional[str] = None
+    note: Optional[str] = None
+    contact: Optional[Dict[str, Any]] = None

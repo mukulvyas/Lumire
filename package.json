@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:all": "./run.sh",
     "dev:backend": "cd backend && .venv/bin/uvicorn main:app --reload --port 8000",
     "dev:frontend": "next dev",
     "build": "next build",

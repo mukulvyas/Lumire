@@ -114,12 +114,12 @@ export function generateFallbackEventDetails(id: string): EventFullDetails {
     { id: 'v-2', event_id: id, category: 'Catering & Bar', name: 'Royal Feast Caterers', status: 'quoted', quote_amount: '360000', note: '3 live artisan counters included', contact: {}, created_at: new Date() },
     { id: 'v-3', event_id: id, category: 'Décor & Florals', name: 'Gulabi Marigold Studios', status: 'contacted', quote_amount: '210000', note: 'Awaiting final CAD layout', contact: {}, created_at: new Date() },
     { id: 'v-4', event_id: id, category: 'Photography & Film', name: 'Lumière Heritage Wedding Films', status: 'contacted', quote_amount: '100000', note: 'Drone authorization verified', contact: {}, created_at: new Date() },
-    { id: 'v-5', event_id: id, category: 'Music & Experience', name: 'Jaipur Folk Ensemble & DJ', status: 'contacted', quote_amount: '40000', note: 'Sunset shehnai + sound tech', contact: {}, created_at: new Date() },
+    { id: 'v-5', event_id: id, category: 'Music & Experience', name: 'Royal Folk Ensemble & DJ', status: 'contacted', quote_amount: '40000', note: 'Sunset shehnai + sound tech', contact: {}, created_at: new Date() },
   ];
 
   const mockGuests: (typeof guests.$inferSelect)[] = [
     { id: 'g-1', event_id: id, name: 'Aarav & Priya Sharma', party_size: 2, relation: 'Close Friends', dietary: 'Vegetarian', rsvp: 'attending', table_id: null, created_at: new Date() },
-    { id: 'g-2', event_id: id, name: 'Vikramaditya Singhania', party_size: 1, relation: 'Family', dietary: 'Jain', rsvp: 'attending', table_id: null, created_at: new Date() },
+    { id: 'g-2', event_id: id, name: 'Kabir Singhania', party_size: 1, relation: 'Family', dietary: 'Jain', rsvp: 'attending', table_id: null, created_at: new Date() },
     { id: 'g-3', event_id: id, name: 'Ananya & Rohan Mehta', party_size: 2, relation: 'College Friends', dietary: 'None', rsvp: 'pending', table_id: null, created_at: new Date() },
     { id: 'g-4', event_id: id, name: 'Devendra & Gayatri Rathore', party_size: 4, relation: 'Family Elders', dietary: 'Traditional Rajasthani', rsvp: 'attending', table_id: null, created_at: new Date() },
     { id: 'g-5', event_id: id, name: 'Siddharth Kapoor', party_size: 1, relation: 'Colleague', dietary: 'Vegan', rsvp: 'declined', table_id: null, created_at: new Date() },
@@ -185,7 +185,7 @@ export async function getEventFullDetails(eventId: string): Promise<EventFullDet
         return data as EventFullDetails;
       }
     }
-  } catch (err: unknown) {
+  } catch {
     // Python backend offline or loading, fallback to deterministic generator
   }
 

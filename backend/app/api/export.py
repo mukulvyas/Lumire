@@ -1,12 +1,17 @@
-from fastapi import APIRouter, Response, HTTPException
+from fastapi import APIRouter, Response, HTTPException, Depends
 from fastapi.responses import HTMLResponse
-from app.api.events import compute_mock_event_details
+from sqlalchemy.ext.asyncio import AsyncSession
+from app.db.session import get_db
+from app.api.events import get_event_endpoint, compute_mock_event_details
 
 router = APIRouter(prefix="/api/export", tags=["Export"])
 
 @router.get("/ics")
-async def export_ics_endpoint(eventId: str = "00000000-0000-0000-0000-000000000001"):
-    details = compute_mock_event_details(eventId)
+async def export_ics_endpoint(
+    eventId: str = "00000000-0000-0000-0000-000000000001",
+    db: AsyncSession = Depends(get_db)
+):
+    details = await get_event_endpoint(eventId, db=db)
     event = details["event"]
     run_sheet = details["runSheetItems"]
     event_date_clean = event["event_date"].replace("-", "")
@@ -61,8 +66,11 @@ async def export_ics_endpoint(eventId: str = "00000000-0000-0000-0000-0000000000
     )
 
 @router.get("/pdf", response_class=HTMLResponse)
-async def export_pdf_endpoint(eventId: str = "00000000-0000-0000-0000-000000000001"):
-    details = compute_mock_event_details(eventId)
+async def export_pdf_endpoint(
+    eventId: str = "00000000-0000-0000-0000-000000000001",
+    db: AsyncSession = Depends(get_db)
+):
+    details = await get_event_endpoint(eventId, db=db)
     event = details["event"]
     computed = details["computed"]
     categories = details["budgetCategories"]

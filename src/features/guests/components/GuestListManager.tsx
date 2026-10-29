@@ -67,12 +67,13 @@ export function GuestListManager({
     );
   });
 
-  function handleAddGuest(e: React.FormEvent) {
+  async function handleAddGuest(e: React.FormEvent) {
     e.preventDefault();
     if (!newGuestName.trim()) return;
 
+    const tempId = `g-${Date.now()}`;
     const newGuest: typeof guests.$inferSelect = {
-      id: `g-${Date.now()}`,
+      id: tempId,
       event_id: _eventId,
       name: newGuestName.trim(),
       party_size: newPartySize,
@@ -86,6 +87,31 @@ export function GuestListManager({
     setGuestList((prev) => [newGuest, ...prev]);
     setNewGuestName('');
     setShowAddModal(false);
+
+    try {
+      const res = await fetch('/api/guests', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          event_id: _eventId,
+          name: newGuest.name,
+          party_size: newGuest.party_size,
+          relation: newGuest.relation,
+          dietary: newGuest.dietary,
+          rsvp: newGuest.rsvp,
+        }),
+      });
+      if (res.ok) {
+        const data = await res.json();
+        if (data.guest?.id) {
+          setGuestList((prev) =>
+            prev.map((g) => (g.id === tempId ? { ...g, id: data.guest.id } : g))
+          );
+        }
+      }
+    } catch (err) {
+      console.warn('Guest creation offline sync:', err);
+    }
   }
 
   function handleWhatsAppInvite() {
@@ -97,14 +123,25 @@ export function GuestListManager({
     setTimeout(() => setCopiedLink(false), 3000);
   }
 
-  function toggleGuestRsvp(guestId: string) {
+  async function toggleGuestRsvp(guestId: string) {
+    let nextRsvp = 'attending';
     setGuestList((prev) =>
       prev.map((g) => {
         if (g.id !== guestId) return g;
-        const nextRsvp = g.rsvp === 'attending' ? 'pending' : g.rsvp === 'pending' ? 'declined' : 'attending';
+        nextRsvp = g.rsvp === 'attending' ? 'pending' : g.rsvp === 'pending' ? 'declined' : 'attending';
         return { ...g, rsvp: nextRsvp };
       })
     );
+
+    try {
+      await fetch(`/api/guests/${guestId}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ rsvp: nextRsvp }),
+      });
+    } catch (err) {
+      console.warn('Guest RSVP offline sync:', err);
+    }
   }
 
   return (

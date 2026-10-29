@@ -1,0 +1,16 @@
+{
+  "name": "Soirée — GenAI Celebration Atelier",
+  "short_name": "Soirée",
+  "description": "Bespoke GenAI Event Planner for Weddings, Birthdays, and Gatherings",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fff8f3",
+  "theme_color": "#5b2a86",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
