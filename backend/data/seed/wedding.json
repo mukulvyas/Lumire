@@ -1,0 +1,58 @@
+{
+  "id": "template_wedding",
+  "event_type": "wedding",
+  "title": "Bespoke Royal Wedding",
+  "description": "Comprehensive planning architecture for weddings, multi-day celebrations, and grand banquets.",
+  "default_budget_split": {
+    "Venue & Stay": 0.45,
+    "Catering & Banquet": 0.25,
+    "Décor & Ambiance": 0.15,
+    "Photography & Cinematography": 0.08,
+    "Music & Entertainment": 0.04,
+    "Other & Buffer": 0.03
+  },
+  "items": [
+    {
+      "type": "task",
+      "title": "Book Venue & Accommodations",
+      "relative_days_before": 180,
+      "phase": "Foundation (6+ Months)",
+      "metadata": { "ai_tip": "Book 6+ months in advance to lock peak wedding season dates." }
+    },
+    {
+      "type": "task",
+      "title": "Finalize Sangeet Choreographer & Playlist",
+      "relative_days_before": 120,
+      "phase": "Creative Direction (3-6 Months)",
+      "metadata": { "ai_tip": "Book early to lock in peak season rehearsal rates." }
+    },
+    {
+      "type": "task",
+      "title": "Confirm Royal Suite Tasting Menu",
+      "relative_days_before": 90,
+      "phase": "Creative Direction (3-6 Months)",
+      "metadata": { "ai_tip": "Gather dietary preferences (Jain, vegan, gluten-free) before final tasting." }
+    },
+    {
+      "type": "task",
+      "title": "Send E-invites & Collect Travel Details",
+      "relative_days_before": 60,
+      "phase": "Guest Engagement (2 Months)",
+      "metadata": { "ai_tip": "Sending 2-3 months prior increases RSVP response rate by 24%." }
+    },
+    {
+      "type": "task",
+      "title": "Review Final Décor & Mandap Lighting Quote",
+      "relative_days_before": 30,
+      "phase": "Final Preparations (1 Month)",
+      "metadata": { "ai_tip": "Confirm power backup and silent generator permits with venue." }
+    },
+    {
+      "type": "task",
+      "title": "Finalize Table Seating & Transport Schedule",
+      "relative_days_before": 7,
+      "phase": "Week Of Event",
+      "metadata": { "ai_tip": "Group guests by relationship and ensure elderly tables have ramp access." }
+    }
+  ]
+}

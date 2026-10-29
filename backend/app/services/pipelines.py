@@ -51,7 +51,9 @@ Produce a PlanPatch containing the exact operations to modify total budget, reba
 VENDOR_QUESTIONS_SYSTEM_PROMPT = """You are a seasoned event negotiator and production director.
 Provide critical, high-value discovery questions that an event host must ask this specific vendor category before signing contracts."""
 
-DATA_DIR = Path(__file__).resolve().parent.parent.parent.parent / "data"
+DATA_DIR = Path(__file__).resolve().parent.parent.parent / "data"
+if not DATA_DIR.exists():
+    DATA_DIR = Path(__file__).resolve().parent.parent.parent.parent / "data"
 
 async def run_intake_pipeline(user_input: str) -> EventBrief:
     today_str = datetime.now().strftime("%Y-%m-%d")

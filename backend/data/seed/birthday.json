@@ -1,0 +1,51 @@
+{
+  "id": "template_birthday",
+  "event_type": "birthday",
+  "title": "Milestone Birthday Celebration",
+  "description": "Tailored celebration blueprint for milestone birthdays, intimate dinners, and evening galas.",
+  "default_budget_split": {
+    "Venue & Lounge": 0.35,
+    "Catering & Bar": 0.30,
+    "Entertainment & DJ": 0.15,
+    "Décor & Styling": 0.10,
+    "Cake & Favors": 0.05,
+    "Buffer": 0.05
+  },
+  "items": [
+    {
+      "type": "task",
+      "title": "Reserve Venue or Private Dining Room",
+      "relative_days_before": 45,
+      "phase": "Planning Kickoff",
+      "metadata": { "ai_tip": "Inquire about corkage fees and private sound system rules." }
+    },
+    {
+      "type": "task",
+      "title": "Curate Custom Cocktail & Tasting Menu",
+      "relative_days_before": 30,
+      "phase": "Menu & Theme",
+      "metadata": { "ai_tip": "Design 2 signature cocktails named after the guest of honor." }
+    },
+    {
+      "type": "task",
+      "title": "Send Digital Invites with RSVP Deadline",
+      "relative_days_before": 21,
+      "phase": "Guest Outreach",
+      "metadata": { "ai_tip": "Include dress code theme and parking instructions." }
+    },
+    {
+      "type": "task",
+      "title": "Order Custom Tier Cake & Dessert Table",
+      "relative_days_before": 14,
+      "phase": "Finishing Touches",
+      "metadata": { "ai_tip": "Schedule delivery 2 hours prior to guest arrival for chill time." }
+    },
+    {
+      "type": "task",
+      "title": "Curate Playlist & Confirm Sound Setup",
+      "relative_days_before": 5,
+      "phase": "Final Countdown",
+      "metadata": { "ai_tip": "Prepare 3 hours of background jazz/lounge followed by dance set." }
+    }
+  ]
+}

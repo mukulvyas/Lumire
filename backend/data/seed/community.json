@@ -1,0 +1,44 @@
+{
+  "id": "template_community",
+  "event_type": "community",
+  "title": "Community Gathering & Cultural Festival",
+  "description": "Blueprint for neighborhood festivals, society melas, and cultural community gatherings.",
+  "default_budget_split": {
+    "Grounds & Permitting": 0.25,
+    "Food & Artisanal Stalls": 0.30,
+    "Lighting & Stage Setup": 0.20,
+    "Performers & Sound": 0.15,
+    "Security & Waste Management": 0.05,
+    "Emergency Reserve": 0.05
+  },
+  "items": [
+    {
+      "type": "task",
+      "title": "Secure Municipal Permits & NOC Certificates",
+      "relative_days_before": 60,
+      "phase": "Approvals & Grounds",
+      "metadata": { "ai_tip": "Apply early for sound extension permits past 10 PM if applicable." }
+    },
+    {
+      "type": "task",
+      "title": "Invite Food Artisans & Stall Vendors",
+      "relative_days_before": 40,
+      "phase": "Vendor Allocation",
+      "metadata": { "ai_tip": "Ensure adequate power supply circuits for live induction heating." }
+    },
+    {
+      "type": "task",
+      "title": "Announce Event Across Community Groups",
+      "relative_days_before": 25,
+      "phase": "Public Outreach",
+      "metadata": { "ai_tip": "Set up entry registration QR code to gauge crowd arrival flow." }
+    },
+    {
+      "type": "task",
+      "title": "Stage Rigging & Ambient Festoon Lighting",
+      "relative_days_before": 3,
+      "phase": "Infrastructure",
+      "metadata": { "ai_tip": "Test sound check during daytime to comply with local decibel limits." }
+    }
+  ]
+}

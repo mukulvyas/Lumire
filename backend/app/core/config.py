@@ -5,11 +5,12 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 from pydantic import Field
 
 # Project root directory (contains .env.local and .env)
-BASE_DIR = Path(__file__).resolve().parent.parent.parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
+ROOT_DIR = Path(__file__).resolve().parent.parent.parent.parent
 
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(
-        env_file=(BASE_DIR / ".env.local", BASE_DIR / ".env"),
+        env_file=(BASE_DIR / ".env.local", BASE_DIR / ".env", ROOT_DIR / ".env.local", ROOT_DIR / ".env"),
         env_file_encoding="utf-8",
         extra="ignore"
     )
