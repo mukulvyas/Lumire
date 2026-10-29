@@ -38,7 +38,7 @@ export function PlanGeneratingShimmer({
       <p className="font-sans text-sm sm:text-base text-on-surface-variant max-w-[500px] mb-8">
         {isComplete
           ? `Everything is in place for ${eventTitle}. Redirecting to your workspace...`
-          : `Soirée AI is grounding costs, balancing schedules, and creating a tailored plan for ${eventTitle}.`}
+          : `Lumière AI is grounding costs, balancing schedules, and creating a tailored plan for ${eventTitle}.`}
       </p>
 
       {/* Progress Bar Container */}

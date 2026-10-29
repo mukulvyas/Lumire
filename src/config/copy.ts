@@ -1,6 +1,6 @@
 export const UI_COPY = {
   brand: {
-    name: 'Soirée',
+    name: 'Lumière',
     tagline: 'Plan any celebration, beautifully.',
     subtext: 'Tell us about your event. We’ll build the budget, timeline, and vendor list in minutes.',
     noSignupNeeded: 'No sign-up needed. Start as a guest.',
@@ -30,7 +30,7 @@ export const UI_COPY = {
       },
     ],
     guaranteeTitle: 'Stress-free precision. Zero logistical anxiety.',
-    guaranteeText: 'Every event plan in Soirée balances real-world market costs, vendor timelines, and seamless guest coordination.',
+    guaranteeText: 'Every event plan in Lumière balances real-world market costs, vendor timelines, and seamless guest coordination.',
   },
   plan: {
     statCards: {
@@ -53,7 +53,7 @@ export const UI_COPY = {
     applyToPlan: 'Apply to plan',
     undo: 'Undo',
     inputPlaceholder: 'Ask AI to refine schedule, recalculate catering, or invite vendors...',
-    updatingPlan: 'Soirée AI is updating your plan…',
+    updatingPlan: 'Lumière AI is updating your plan…',
   },
   budget: {
     title: 'Your budget',

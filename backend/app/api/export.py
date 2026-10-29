@@ -19,7 +19,7 @@ async def export_ics_endpoint(
     ics_lines = [
         "BEGIN:VCALENDAR",
         "VERSION:2.0",
-        "PRODID:-//Soirée//Celebration Planner//EN",
+        "PRODID:-//Lumière//Celebration Planner//EN",
         "CALSCALE:GREGORIAN",
         "METHOD:PUBLISH",
         f"X-WR-CALNAME:{event['title']}",
@@ -31,7 +31,7 @@ async def export_ics_endpoint(
             et = item["end_time"].replace(":", "") + "00"
             ics_lines.extend([
                 "BEGIN:VEVENT",
-                f"UID:{item['id']}@soiree.atelier",
+                f"UID:{item['id']}@lumiere.atelier",
                 f"DTSTAMP:{event_date_clean}T000000Z",
                 f"DTSTART:{event_date_clean}T{st}",
                 f"DTEND:{event_date_clean}T{et}",
@@ -44,11 +44,11 @@ async def export_ics_endpoint(
     else:
         ics_lines.extend([
             "BEGIN:VEVENT",
-            f"UID:{event['id']}@soiree.atelier",
+            f"UID:{event['id']}@lumiere.atelier",
             f"DTSTAMP:{event_date_clean}T000000Z",
             f"DTSTART;VALUE=DATE:{event_date_clean}",
             f"SUMMARY:{event['title']}",
-            f"DESCRIPTION:Celebration planned with Soirée in {event['city']}",
+            f"DESCRIPTION:Celebration planned with Lumière in {event['city']}",
             f"LOCATION:{event['city']}",
             "STATUS:CONFIRMED",
             "END:VEVENT"

@@ -64,7 +64,7 @@ export function IntakeChat({ initialBrief, onGenerate, isSubmitting = false }: I
         </div>
         <div className="flex-1 bg-surface-container-lowest/90 backdrop-blur-md rounded-2xl p-5 border border-primary/15 shadow-sm text-on-surface">
           <div className="flex items-center gap-2 mb-2">
-            <span className="font-semibold text-primary font-sans text-sm">Soirée AI Atelier</span>
+            <span className="font-semibold text-primary font-sans text-sm">Lumière AI Atelier</span>
             <span className="text-[11px] px-2 py-0.5 rounded-full bg-primary/10 text-primary font-medium">
               Intake Ready
             </span>

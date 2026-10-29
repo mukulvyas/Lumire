@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Soirée - Full Stack Dev Server Runner
+# Lumière - Full Stack Dev Server Runner
 # Starts both the Python FastAPI backend and Next.js frontend concurrently.
 
 set -e
@@ -10,7 +10,7 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$ROOT_DIR"
 
 echo "=========================================================="
-echo "  ✨ Starting Soirée (Next.js Frontend + Python Backend)   "
+echo "  ✨ Starting Lumière (Next.js Frontend + Python Backend)   "
 echo "=========================================================="
 
 # 1. Clean up lingering processes on ports 8000 and 3000
@@ -39,7 +39,7 @@ fi
 # 4. Define cleanup handler on exit (Ctrl+C)
 cleanup() {
   echo ""
-  echo "🛑 Stopping Soirée servers..."
+  echo "🛑 Stopping Lumière servers..."
   if [ -n "$BACKEND_PID" ]; then
     kill "$BACKEND_PID" 2>/dev/null || true
   fi
@@ -73,7 +73,7 @@ FRONTEND_PID=$!
 
 echo ""
 echo "=========================================================="
-echo "  🎉 Soirée is live!"
+echo "  🎉 Lumière is live!"
 echo "  👉 Frontend:     http://localhost:3000"
 echo "  👉 Backend API:  http://127.0.0.1:8000"
 echo "  👉 Swagger Docs: http://127.0.0.1:8000/docs"

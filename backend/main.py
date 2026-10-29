@@ -11,11 +11,11 @@ from app.api.vendors import router as vendors_router
 from app.api.guests import router as guests_router
 
 logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger("soiree-backend")
+logger = logging.getLogger("lumiere-backend")
 
 app = FastAPI(
-    title="Soirée API",
-    description="Python Backend for Soirée GenAI Event Planner",
+    title="Lumière API",
+    description="Python Backend for Lumière GenAI Event Planner",
     version="1.0.0"
 )
 
@@ -42,7 +42,7 @@ app.include_router(guests_router)
 async def health_check():
     return {
         "status": "healthy",
-        "service": "Soirée Python Backend",
+        "service": "Lumière Python Backend",
         "llm_provider": settings.LLM_PROVIDER,
         "database": "configured"
     }

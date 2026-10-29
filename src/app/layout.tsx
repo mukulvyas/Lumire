@@ -21,11 +21,11 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: 'Soirée — GenAI Event Planner',
+  title: 'Lumière — GenAI Event Planner',
   description:
     'Plan weddings, milestone birthdays, and community gatherings with AI precision. Budgets, timelines, vendors, and RSVPs in minutes.',
-  applicationName: 'Soirée',
-  authors: [{ name: 'Soirée' }],
+  applicationName: 'Lumière',
+  authors: [{ name: 'Lumière' }],
   keywords: ['event planner', 'wedding planner', 'birthday planner', 'AI event planner', 'celebration planner', 'budget planner'],
   manifest: '/manifest.json',
   icons: {
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     apple: '/icon.svg',
   },
   openGraph: {
-    title: 'Soirée — GenAI Event Planner',
+    title: 'Lumière — GenAI Event Planner',
     description: 'Plan any celebration, beautifully.',
     type: 'website',
   },

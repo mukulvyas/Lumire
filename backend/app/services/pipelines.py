@@ -22,7 +22,7 @@ from app.db.models import (
 
 logger = logging.getLogger(__name__)
 
-INTAKE_SYSTEM_PROMPT = """You are Soirée's Lead Event Architect.
+INTAKE_SYSTEM_PROMPT = """You are Lumière's Lead Event Architect.
 Your task is to extract a structured EventBrief from the user's plain language description of a celebration.
 You must return a valid JSON object matching the EventBrief schema.
 
@@ -40,11 +40,11 @@ Rules:
    - Generate up to 2 polite clarifying questions in clarifying_questions array.
 4. Output strictly valid JSON."""
 
-GENERATE_PLAN_SYSTEM_PROMPT = """You are Soirée's Elite Celebration Master Planner.
+GENERATE_PLAN_SYSTEM_PROMPT = """You are Lumière's Elite Celebration Master Planner.
 Your purpose is to architect high-craft, culturally grounded celebration masterplans.
 Produce authentic, realistic, itemized event plans. Output strictly valid JSON."""
 
-REVISE_PLAN_SYSTEM_PROMPT = """You are Soirée's Revision Architect.
+REVISE_PLAN_SYSTEM_PROMPT = """You are Lumière's Revision Architect.
 Analyze the user's instruction and the current plan snapshot.
 Produce a PlanPatch containing the exact operations to modify total budget, rebalance categories, change theme, or add tasks."""
 

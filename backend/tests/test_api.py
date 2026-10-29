@@ -10,7 +10,7 @@ async def test_health_check():
         assert res.status_code == 200
         data = res.json()
         assert data["status"] == "healthy"
-        assert data["service"] == "Soirée Python Backend"
+        assert data["service"] == "Lumière Python Backend"
 
 @pytest.mark.asyncio
 async def test_ai_intake_pipeline():

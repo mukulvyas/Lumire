@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: soiree-backend
+    name: lumiere-backend
     runtime: python
     rootDir: backend
     buildCommand: pip install -r requirements.txt
@@ -12,14 +12,14 @@ services:
         sync: false
 
   - type: web
-    name: soiree-frontend
+    name: lumiere-frontend
     runtime: node
     buildCommand: npm install && npm run build
     startCommand: npm run start
     envVars:
       - key: BACKEND_URL
         fromService:
-          name: soiree-backend
+          name: lumiere-backend
           type: web
           property: host
       - key: NEXT_PUBLIC_SUPABASE_URL

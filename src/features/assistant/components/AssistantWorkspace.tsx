@@ -268,7 +268,7 @@ export function AssistantWorkspace({
                     <Sparkles className="w-4 h-4 fill-primary" />
                   </div>
                   <div>
-                    <h3 className="font-serif text-lg font-bold text-primary">Soirée AI</h3>
+                    <h3 className="font-serif text-lg font-bold text-primary">Lumière AI</h3>
                   </div>
                 </div>
 
@@ -330,7 +330,7 @@ export function AssistantWorkspace({
             <div className="flex items-center gap-3 pl-2">
               <div className="bg-surface-container-lowest/90 backdrop-blur-md rounded-full px-4 py-2.5 shadow-xs inline-flex items-center gap-2 border border-primary/10">
                 <span className="font-sans text-xs sm:text-sm text-on-surface-variant italic">
-                  Soirée AI is updating your plan…
+                  Lumière AI is updating your plan…
                 </span>
                 <div className="flex items-center gap-1">
                   <span className="w-1.5 h-1.5 rounded-full bg-primary animate-bounce" />
