@@ -41,18 +41,51 @@ export async function getOrCreateAnonymousSession(): Promise<UserSession> {
 }
 
 /**
- * Links an anonymous user account with Google OAuth so their created
- * event and data are preserved under their verified Google account.
+ * Signs in with Google OAuth. If the user already has an active anonymous
+ * session, it attempts to link their identity to preserve their plan data.
  */
-export async function linkGoogleAccount(): Promise<{ error: Error | null }> {
+export async function signInWithGoogle(): Promise<{ error: Error | null }> {
   const supabase = createClient();
+  const redirectTo = typeof window !== 'undefined' ? `${window.location.origin}/auth/callback` : undefined;
 
-  const { error } = await supabase.auth.linkIdentity({
+  try {
+    const { data: sessionData } = await supabase.auth.getSession();
+    const session = sessionData?.session;
+
+    // Only attempt linkIdentity if the user is already authenticated as an anonymous user
+    if (session?.user && session.user.is_anonymous) {
+      const { data, error } = await supabase.auth.linkIdentity({
+        provider: 'google',
+        options: { redirectTo },
+      });
+      if (!error) {
+        if (data?.url && typeof window !== 'undefined') {
+          window.location.href = data.url;
+        }
+        return { error: null };
+      }
+    }
+  } catch {
+    // Session check / linking failed, fall through to signInWithOAuth
+  }
+
+  // Standard Google OAuth sign-in (for unauthenticated or standard users)
+  const { data, error } = await supabase.auth.signInWithOAuth({
     provider: 'google',
     options: {
-      redirectTo: typeof window !== 'undefined' ? `${window.location.origin}/auth/callback` : undefined,
+      redirectTo,
     },
   });
 
-  return { error };
+  if (error) {
+    return { error };
+  }
+
+  if (data?.url && typeof window !== 'undefined') {
+    window.location.href = data.url;
+  }
+
+  return { error: null };
 }
+
+export const linkGoogleAccount = signInWithGoogle;

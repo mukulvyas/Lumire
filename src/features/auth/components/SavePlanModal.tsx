@@ -22,7 +22,15 @@ export function SavePlanModal({ isOpen, onClose }: SavePlanModalProps) {
       setErrorMsg(null);
       const { error } = await linkGoogleAccount();
       if (error) {
-        setErrorMsg(error.message);
+        if (
+          error.message.includes('provider is not enabled') ||
+          error.message.includes('not supported') ||
+          error.message.includes('could not be found')
+        ) {
+          setErrorMsg('Google login is not enabled in your Supabase project yet. Please enable Google in Supabase -> Authentication -> Providers.');
+        } else {
+          setErrorMsg(error.message);
+        }
       }
     } catch (err: unknown) {
       const error = err as Error;
