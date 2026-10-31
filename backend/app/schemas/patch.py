@@ -39,3 +39,5 @@ class RevisePlanResult(BaseModel):
     patch: PlanPatch
     diffs: List[PlanDiffItem]
     proposedSnapshot: dict
+    reply: Optional[str] = None
+    summary: Optional[str] = None

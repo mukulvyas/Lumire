@@ -25,7 +25,7 @@ export async function POST(request: Request) {
     const backendUrl = process.env.BACKEND_URL || 'http://127.0.0.1:8000';
     try {
       const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 4000);
+      const timeoutId = setTimeout(() => controller.abort(), 12000);
       const backendRes = await fetch(`${backendUrl}/api/ai/revise`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

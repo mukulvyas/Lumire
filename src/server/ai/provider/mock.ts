@@ -47,7 +47,30 @@ export class MockLLMProvider implements LLMProvider {
 
     // 2. Plan Revision / Assistant Response
     if (systemPrompt === REVISE_PLAN_SYSTEM_PROMPT || promptLower.includes('propose the planpatch')) {
-      if (promptLower.includes('theme') || promptLower.includes('color') || promptLower.includes('decor')) {
+      let reqLower = promptLower;
+      if (promptLower.includes('host request:')) {
+        reqLower = promptLower.split('host request:')[1] || promptLower;
+      }
+
+      if (/^(hi|hello|hey|namaste|greetings)(\s|$|[!.?])/i.test(reqLower.trim()) || reqLower.includes('hi ') || reqLower.includes('hello')) {
+        const greetingPatch = {
+          summary: 'Welcome to Lumière AI Atelier, ready to curate your bespoke celebration experience.',
+          reply: `### Namaste and welcome to Lumière AI Atelier
+
+It is an honor to assist you in designing a celebration of true distinction. As your celebration concierge, I am here to guide you with both elevated artistry and strategic operational precision:
+
+* **Bespoke Aesthetic Curations**: Discover curated heritage themes, rich color palettes with hex codes, and authentic floral installations.
+* **Strategic Budget Math**: Optimize catering, venue, and entertainment allocations to maximize guest experience while preserving a healthy buffer.
+* **Vendor Discovery & Negotiation**: Generate targeted interview questions and contract safeguards for venues, caterers, and cinematographers.
+* **Rituals & Timelines**: Design a sunset-synchronized ceremony and golden-hour run sheet.
+
+Tell me, what aspect of your celebration shall we explore first?`,
+          operations: [],
+        };
+        return schema.parse(greetingPatch);
+      }
+
+      if (reqLower.includes('theme') || reqLower.includes('color') || reqLower.includes('decor')) {
         const themePatch = {
           summary: 'Curated 3 authentic Royal Heritage celebration aesthetics with bespoke color palettes and decor styling.',
           reply: `### Authentic Royal Heritage Themes & Color Palettes
@@ -75,7 +98,7 @@ export class MockLLMProvider implements LLMProvider {
         return schema.parse(themePatch);
       }
 
-      if (promptLower.includes('catering') || promptLower.includes('budget') || promptLower.includes('cut') || promptLower.includes('reduce')) {
+      if (reqLower.includes('catering') || reqLower.includes('budget') || reqLower.includes('cut') || reqLower.includes('reduce')) {
         const budgetPatch = {
           summary: 'Optimized catering allocation by 10% (₹38,000) while introducing interactive live counters.',
           reply: `I have rebalanced your celebration budget by ₹38,000 (10% catering optimization):
@@ -98,7 +121,7 @@ export class MockLLMProvider implements LLMProvider {
         return schema.parse(budgetPatch);
       }
 
-      if (promptLower.includes('timeline') || promptLower.includes('ritual') || promptLower.includes('schedule')) {
+      if (reqLower.includes('timeline') || reqLower.includes('ritual') || reqLower.includes('schedule')) {
         const timelinePatch = {
           summary: 'Adjusted ritual sequence for golden-hour sunset ceremony with candlelight evening banquet.',
           reply: `I've refined your ritual sequence to harmonize with the golden hour:

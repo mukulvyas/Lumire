@@ -44,9 +44,31 @@ GENERATE_PLAN_SYSTEM_PROMPT = """You are Lumière's Elite Celebration Master Pla
 Your purpose is to architect high-craft, culturally grounded celebration masterplans.
 Produce authentic, realistic, itemized event plans. Output strictly valid JSON."""
 
-REVISE_PLAN_SYSTEM_PROMPT = """You are Lumière's Revision Architect.
-Analyze the user's instruction and the current plan snapshot.
-Produce a PlanPatch containing the exact operations to modify total budget, rebalance categories, change theme, or add tasks."""
+REVISE_PLAN_SYSTEM_PROMPT = """You are Lumière AI Atelier — an elite luxury celebration designer and strategic event planner.
+Your goal is to guide the host with elevated creative direction, culturally rich advisory, and precise operational math.
+
+GUIDELINES FOR YOUR OUTPUT:
+1. When greeted (e.g. "hi", "hello", "namaste", "hey"):
+   - Greet the host warmly with poise and hospitality.
+   - Introduce how you can assist: curating bespoke themes, optimizing category budgets, drafting vendor discovery questions, or structuring ritual run-sheets.
+   - Set operations to an empty list [].
+2. When asked about themes, colors, floral, or decor:
+   - Curate 2-3 authentic, evocative theme concepts (e.g. "Noor Mahal Twilight", "Suryavanshi Marigold & Antiqued Brass", "Gulabi City Romance").
+   - Include specific color palettes with hex codes (e.g. Royal Plum #4A154B, Warm Gold #D4AF37, Ivory #FDFBF7), fabric textures (raw silk, organza), and lighting motifs.
+   - If a specific theme is preferred, include an operation: {"type": "replaceTheme", "new_theme": "..."}.
+3. When asked about budgets or allocations:
+   - Provide realistic trade-offs (e.g. interactive live regional counters over heavy buffets, local seasonal florals).
+   - Propose precise operations: {"type": "rebalanceCategory", "category_name": "...", "amount": number} or {"type": "setBudgetTotal", "total_budget": number}.
+4. When asked for checklists, advice, or general conversation:
+   - Provide articulate, structured, bulleted advice.
+   - Set operations to [] if no plan mutation is needed.
+
+OUTPUT FORMAT (strictly valid JSON):
+{
+  "summary": "One concise sentence summarizing the response",
+  "reply": "Rich, beautifully formatted markdown response with greetings/headings/bullet points/hex codes",
+  "operations": []
+}"""
 
 VENDOR_QUESTIONS_SYSTEM_PROMPT = """You are a seasoned event negotiator and production director.
 Provide critical, high-value discovery questions that an event host must ask this specific vendor category before signing contracts."""
@@ -254,14 +276,19 @@ Generate 3-6 creative sensory ideas across decor, entertainment, gifts, and menu
 
 async def run_revise_plan_pipeline(
     current_plan_snapshot: Dict[str, Any],
-    user_instruction: str
+    user_instruction: str,
+    history: Optional[List[Dict[str, Any]]] = None
 ) -> RevisePlanResult:
     today_str = datetime.now().strftime("%Y-%m-%d")
-    user_prompt = f"""Current Plan: {json.dumps(current_plan_snapshot)}
-User Request: "{user_instruction}"
-Today's Date: {today_str}
+    categories_summary = ", ".join([f"{c.get('name')}: ₹{c.get('planned', 0):,.0f}" for c in current_plan_snapshot.get("categories", [])])
+    context_str = f"Celebration State: Total Budget ₹{current_plan_snapshot.get('total_budget', 0):,.0f}, Theme: '{current_plan_snapshot.get('theme', 'Royal Heritage')}'. Categories: [{categories_summary}]. Today: {today_str}"
 
-Provide the PlanPatch operations:"""
+    history_str = ""
+    if history:
+        recent = history[-4:]
+        history_str = "\nRecent Conversation History:\n" + "\n".join([f"{'Host' if m.get('role') == 'user' else 'Lumière'}: \"{str(m.get('content', ''))[:300]}\"" for m in recent]) + "\n"
+
+    user_prompt = f"{context_str}{history_str}\nHost Request: \"{user_instruction}\"\n\nRespond strictly with the JSON object:"
 
     patch = await gemini_service.generate_structured(
         PlanPatch,
@@ -309,16 +336,23 @@ Provide the PlanPatch operations:"""
                 changeType="added"
             ))
 
-    if not patch.summary:
-        patch.summary = patch.reasoning or patch.reply or "Celebration parameters aligned."
-    if not patch.reply:
-        patch.reply = patch.summary
+    reply_text = patch.reply or patch.summary or (
+        "Namaste! I am your Lumière Celebration Concierge. "
+        "I can help you explore bespoke themes with color hex codes, rebalance category budgets with precision math, "
+        "or structure your ritual run sheet. How can I assist you right now?"
+    )
+    summary_text = patch.summary or "Celebration parameters refined and aligned with your vision."
+
+    patch.reply = reply_text
+    patch.summary = summary_text
 
     return RevisePlanResult(
         success=True,
         patch=patch,
         diffs=diffs,
-        proposedSnapshot=proposed
+        proposedSnapshot=proposed,
+        reply=reply_text,
+        summary=summary_text
     )
 
 async def run_vendor_questions_pipeline(

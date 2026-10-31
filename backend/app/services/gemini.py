@@ -154,7 +154,18 @@ class GeminiService:
                 ]
             })
         elif name == "PlanPatch":
-            if any(k in p_lower for k in ["theme", "color", "decor", "palette"]):
+            req_lower = p_lower
+            if "host request:" in p_lower:
+                req_lower = p_lower.split("host request:", 1)[1]
+
+            if any(k in req_lower for k in ["hi", "hello", "hey", "namaste", "greetings"]):
+                return schema_cls.model_validate({
+                    "reasoning": "Warm concierge welcome offering thematic, budget, vendor, and timeline assistance.",
+                    "summary": "Welcome to Lumière AI Atelier, ready to curate your celebration.",
+                    "reply": "### Namaste and welcome to Lumière AI Atelier\n\nIt is an honor to assist you in designing a celebration of true distinction. As your celebration concierge, I am here to guide you with both elevated artistry and strategic operational precision:\n\n* **Bespoke Aesthetic Curations**: Discover curated heritage themes, rich color palettes with hex codes, and authentic floral installations.\n* **Strategic Budget Math**: Optimize catering, venue, and entertainment allocations to maximize guest experience while preserving a healthy buffer.\n* **Vendor Discovery & Negotiation**: Generate targeted interview questions and contract safeguards for venues, caterers, and cinematographers.\n* **Rituals & Timelines**: Design a sunset-synchronized ceremony and golden-hour run sheet.\n\nTell me, what aspect of your celebration shall we explore first?",
+                    "operations": []
+                })
+            elif any(k in req_lower for k in ["theme", "color", "decor", "palette"]):
                 return schema_cls.model_validate({
                     "reasoning": "Curated 3 authentic Royal Heritage celebration aesthetics with bespoke color palettes and decor styling.",
                     "summary": "Curated 3 authentic Royal Heritage celebration aesthetics with bespoke color palettes and decor styling.",
@@ -163,7 +174,7 @@ class GeminiService:
                         {"type": "replaceTheme", "new_theme": "Noor Mahal Twilight & Saffron Gold"}
                     ]
                 })
-            elif any(k in p_lower for k in ["catering", "budget", "cut", "reduce"]):
+            elif any(k in req_lower for k in ["catering", "budget", "cut", "reduce"]):
                 return schema_cls.model_validate({
                     "reasoning": "Optimized catering allocation by 10% (₹38,000) while introducing interactive live counters.",
                     "summary": "Optimized catering allocation by 10% (₹38,000) while introducing interactive live counters.",

@@ -2,7 +2,7 @@ import asyncio
 import json
 from fastapi import APIRouter, Depends, HTTPException, Request
 from fastapi.responses import StreamingResponse
-from typing import Dict, Any, Optional
+from typing import Dict, Any, Optional, List
 from pydantic import BaseModel
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -36,6 +36,7 @@ class ReviseRequest(BaseModel):
     userInstruction: Optional[str] = None
     instruction: Optional[str] = None
     eventId: Optional[str] = None
+    history: Optional[List[Dict[str, Any]]] = None
 
     @property
     def text(self) -> str:
@@ -102,7 +103,7 @@ async def revise_endpoint(payload: ReviseRequest):
     instruction = payload.text
     if not instruction:
         raise HTTPException(status_code=400, detail="userInstruction or instruction is required")
-    return await run_revise_plan_pipeline(payload.currentPlanSnapshot, instruction)
+    return await run_revise_plan_pipeline(payload.currentPlanSnapshot, instruction, history=payload.history)
 
 @router.post("/vendor-questions")
 async def vendor_questions_endpoint(payload: VendorQuestionsRequest):
