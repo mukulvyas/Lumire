@@ -89,3 +89,21 @@ export async function signInWithGoogle(): Promise<{ error: Error | null }> {
 }
 
 export const linkGoogleAccount = signInWithGoogle;
+
+export async function signInWithEmail(email: string, password: string): Promise<{ error: Error | null }> {
+  const supabase = createClient();
+  const { error } = await supabase.auth.signInWithPassword({
+    email,
+    password,
+  });
+  return { error };
+}
+
+export async function signUpWithEmail(email: string, password: string): Promise<{ error: Error | null }> {
+  const supabase = createClient();
+  const { error } = await supabase.auth.signUp({
+    email,
+    password,
+  });
+  return { error };
+}

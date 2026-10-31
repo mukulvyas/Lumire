@@ -63,6 +63,12 @@ export function FloatingConciergeChat() {
     setIsTyping(true);
 
     try {
+      // Compact conversation memory
+      const historyPayload = messages.slice(-6).map((m) => ({
+        role: m.role,
+        content: m.text,
+      }));
+
       // Call revise/assistant API
       const res = await fetch('/api/ai/revise', {
         method: 'POST',
@@ -70,6 +76,7 @@ export function FloatingConciergeChat() {
         body: JSON.stringify({
           instruction: textToSend,
           eventId: eventId || 'demo-event',
+          history: historyPayload,
           currentPlanSnapshot: {
             total_budget: 1500000,
             categories: [
@@ -88,6 +95,8 @@ export function FloatingConciergeChat() {
       if (res.ok) {
         const data = await res.json();
         const replyText =
+          data.reply ||
+          data.patch?.reply ||
           data.patch?.summary ||
           data.summary ||
           `I've analyzed your celebration parameters for "${textToSend}". Your budgets and milestones have been aligned with regional benchmarks.`;

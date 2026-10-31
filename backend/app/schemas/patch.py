@@ -23,9 +23,10 @@ class AddTaskOp(BaseModel):
 PatchOperation = Union[SetBudgetTotalOp, RebalanceCategoryOp, ReplaceThemeOp, AddTaskOp]
 
 class PlanPatch(BaseModel):
-    reasoning: str
+    reasoning: Optional[str] = ""
     summary: Optional[str] = None
-    operations: List[PatchOperation]
+    reply: Optional[str] = None
+    operations: List[PatchOperation] = Field(default_factory=list)
 
 class PlanDiffItem(BaseModel):
     field: str

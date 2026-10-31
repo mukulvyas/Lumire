@@ -139,6 +139,12 @@ export function AssistantWorkspace({
         tasks: initialTasks.map((t) => ({ title: t.title, due_date: t.due_date })),
       };
 
+      // Compact conversation memory (last 6 messages)
+      const historyPayload = messages.slice(-6).map((m) => ({
+        role: m.role,
+        content: m.content,
+      }));
+
       const res = await fetch('/api/ai/revise', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -146,27 +152,42 @@ export function AssistantWorkspace({
           eventId,
           instruction: text,
           currentPlanSnapshot: currentSnapshot,
+          history: historyPayload,
         }),
       });
 
       if (res.ok) {
         const data = await res.json();
-        if (data.success && data.patch) {
+        const contentText =
+          data.reply ||
+          data.patch?.reply ||
+          data.patch?.summary ||
+          data.summary ||
+          'I have analyzed and updated your celebration structure accordingly.';
+
+        const hasOperations = Boolean(
+          data.patch && data.patch.operations && data.patch.operations.length > 0
+        );
+
+        if (hasOperations) {
           setPendingPatch(data.patch);
           setPendingDiffs(data.diffs || []);
-
-          const aiMsg: ChatMessage = {
-            id: `ai-${Date.now()}`,
-            role: 'assistant',
-            content: data.patch.summary || 'I have analyzed and updated your celebration structure accordingly.',
-            diffs: data.diffs,
-            patch: data.patch,
-            timestamp: 'Just now',
-          };
-
-          setMessages((prev) => [...prev, aiMsg]);
-          return;
+        } else {
+          setPendingPatch(null);
+          setPendingDiffs([]);
         }
+
+        const aiMsg: ChatMessage = {
+          id: `ai-${Date.now()}`,
+          role: 'assistant',
+          content: contentText,
+          diffs: data.diffs && data.diffs.length > 0 ? data.diffs : undefined,
+          patch: hasOperations ? data.patch : undefined,
+          timestamp: 'Just now',
+        };
+
+        setMessages((prev) => [...prev, aiMsg]);
+        return;
       }
 
       // If backend responded without a patch or non-200, formulate an intelligent atelier assistant response
@@ -292,9 +313,9 @@ export function AssistantWorkspace({
                 </div>
 
                 {/* Narrative Response */}
-                <p className="font-sans text-sm sm:text-base text-on-surface leading-relaxed">
+                <div className="font-sans text-sm sm:text-base text-on-surface leading-relaxed whitespace-pre-wrap space-y-2">
                   {msg.content}
-                </p>
+                </div>
 
                 {/* Nested Changes Ledger Card */}
                 {msg.diffs && msg.diffs.length > 0 && (

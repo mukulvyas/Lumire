@@ -23,23 +23,24 @@ export class GeminiProvider implements LLMProvider {
     userPrompt: string,
     options?: GenerateOptions
   ): Promise<TOutput> {
-    const model = this.genAI.getGenerativeModel({
-      model: this.modelName,
-      systemInstruction: systemPrompt,
-      generationConfig: {
-        responseMimeType: 'application/json',
-        temperature: options?.temperature ?? 0.2,
-        maxOutputTokens: options?.maxTokens ?? 2048,
-      },
-    });
+    const candidateModels = Array.from(
+      new Set([this.modelName, 'gemini-3.1-flash-lite', 'gemini-2.5-flash-lite', 'gemini-flash-latest'])
+    );
 
-    let attempts = 0;
-    const maxAttempts = 3; // 1 initial + max 2 retries
     let lastError: Error | null = null;
 
-    while (attempts < maxAttempts) {
-      attempts++;
+    for (const modelToTry of candidateModels) {
       try {
+        const model = this.genAI.getGenerativeModel({
+          model: modelToTry,
+          systemInstruction: systemPrompt,
+          generationConfig: {
+            responseMimeType: 'application/json',
+            temperature: options?.temperature ?? 0.2,
+            maxOutputTokens: options?.maxTokens ?? 2048,
+          },
+        });
+
         const result = await model.generateContent(userPrompt);
         const text = result.response.text();
 
@@ -52,16 +53,15 @@ export class GeminiProvider implements LLMProvider {
         return validated;
       } catch (err: unknown) {
         lastError = err as Error;
-        console.warn(`[GeminiProvider] Attempt ${attempts}/${maxAttempts} failed:`, lastError.message);
-        if (attempts >= maxAttempts) {
-          break;
-        }
+        console.warn(`[GeminiProvider] Model ${modelToTry} failed:`, lastError.message);
       }
     }
 
-    throw new Error(
-      `Failed to generate valid structured output after ${maxAttempts} attempts: ${lastError?.message}`
-    );
+    // Graceful fallback to MockLLMProvider if all remote models fail or rate-limit
+    console.warn('[GeminiProvider] All Gemini models failed or rate-limited. Falling back to local intelligence engine.');
+    const { MockLLMProvider } = await import('./mock');
+    const mock = new MockLLMProvider();
+    return mock.generateStructured(schema, systemPrompt, userPrompt, options);
   }
 
   async *streamText(

@@ -310,7 +310,9 @@ Provide the PlanPatch operations:"""
             ))
 
     if not patch.summary:
-        patch.summary = patch.reasoning
+        patch.summary = patch.reasoning or patch.reply or "Celebration parameters aligned."
+    if not patch.reply:
+        patch.reply = patch.summary
 
     return RevisePlanResult(
         success=True,

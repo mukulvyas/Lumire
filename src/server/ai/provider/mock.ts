@@ -45,23 +45,93 @@ export class MockLLMProvider implements LLMProvider {
       return schema.parse(mockBrief);
     }
 
-    // 2. Plan Revision Response
+    // 2. Plan Revision / Assistant Response
     if (systemPrompt === REVISE_PLAN_SYSTEM_PROMPT || promptLower.includes('propose the planpatch')) {
-      const mockPatch = {
-        summary: 'Reduced catering budget to ₹3.5L and updated decor styling.',
-        operations: [
-          {
-            type: 'rebalanceCategory',
-            category_name: 'Catering & Banquet',
-            amount: 350000,
-          },
-          {
-            type: 'replaceTheme',
-            new_theme: 'Royal Marigold & Antiqued Brass',
-          },
-        ],
+      if (promptLower.includes('theme') || promptLower.includes('color') || promptLower.includes('decor')) {
+        const themePatch = {
+          summary: 'Curated 3 authentic Royal Heritage celebration aesthetics with bespoke color palettes and decor styling.',
+          reply: `### Authentic Royal Heritage Themes & Color Palettes
+
+#### 1. Noor Mahal Twilight
+* **Palette**: Royal Velvet Plum (\`#4A154B\`), Saffron Gold (\`#D4AF37\`), Amber Glow (\`#FFBF00\`), Antique Ivory (\`#FDFBF7\`)
+* **Decor & Ambiance**: Hand-beaten brass urlis filled with mogra flowers and floating tea lights, sheer organza drapes, and ambient acoustic sitar at dusk.
+
+#### 2. Suryavanshi Marigold & Antiqued Brass
+* **Palette**: Auspicious Marigold Orange (\`#FF9933\`), Rani Gulabi Pink (\`#E0115F\`), Vermillion (\`#E34234\`), Burnished Gold (\`#DAA520\`)
+* **Decor & Ambiance**: Cascading floral torans, earthen clay diyas, block-printed cushions, and brass bell chandeliers.
+
+#### 3. Jodhpur Nilaya & Marble Ivory
+* **Palette**: Imperial Indigo (\`#1A237E\`), Cloud White (\`#F5F5F5\`), Gilded Leaf (\`#CFB53B\`), Slate (\`#708090\`)
+* **Decor & Ambiance**: Cool marble pavilion styling, blue pottery floral vases, and silver-leaf dining settings.
+
+*Would you like to anchor your celebration to one of these themes or adjust specific decor allocations?*`,
+          operations: [
+            {
+              type: 'replaceTheme',
+              new_theme: 'Noor Mahal Twilight & Saffron Gold',
+            },
+          ],
+        };
+        return schema.parse(themePatch);
+      }
+
+      if (promptLower.includes('catering') || promptLower.includes('budget') || promptLower.includes('cut') || promptLower.includes('reduce')) {
+        const budgetPatch = {
+          summary: 'Optimized catering allocation by 10% (₹38,000) while introducing interactive live counters.',
+          reply: `I have rebalanced your celebration budget by ₹38,000 (10% catering optimization):
+
+* **Catering Optimization**: Scaled from ₹3.8L to ₹3.42L. By replacing heavy chafer buffet spreads with interactive regional live counters (chaat bars, wood-fired tandoor, artisanal breads), guest engagement increases while food wastage drops by 20%.
+* **Decor & Floral Balance**: Maintained peak visual focal points (the entrance gate and mandap/stage) while using locally sourced seasonal blooms to preserve ₹20,000 in floral transport expenses.
+* **Buffer Allocation**: Your contingency buffer remains fully intact to safeguard against unexpected guest additions.`,
+          operations: [
+            {
+              type: 'rebalanceCategory',
+              category_name: 'Catering & Bar',
+              amount: 342000,
+            },
+            {
+              type: 'setBudgetTotal',
+              total_budget: 1462000,
+            },
+          ],
+        };
+        return schema.parse(budgetPatch);
+      }
+
+      if (promptLower.includes('timeline') || promptLower.includes('ritual') || promptLower.includes('schedule')) {
+        const timelinePatch = {
+          summary: 'Adjusted ritual sequence for golden-hour sunset ceremony with candlelight evening banquet.',
+          reply: `I've refined your ritual sequence to harmonize with the golden hour:
+
+* **16:00 - 17:30**: Grand Arrival & Welcome Drinks (Acoustic Shehnai & Sitar)
+* **17:30 - 18:45**: Sunset Rituals & Varmala (Scheduled precisely during golden hour for peak photography lighting)
+* **19:00 - 23:00**: Royal Candlelight Banquet, Live Classical Fusion & Celebratory Sangeet
+
+*Would you like to add automated milestone reminders for vendor setup crews?*`,
+          operations: [
+            {
+              type: 'addTask',
+              title: 'Conduct Golden Hour Soundcheck & Lighting Check',
+              phase: 'Day-of Execution',
+              due_date: '2027-02-14',
+              ai_tip: 'Complete lighting balance test 45 minutes before sunset.',
+            },
+          ],
+        };
+        return schema.parse(timelinePatch);
+      }
+
+      const generalPatch = {
+        summary: 'Celebration parameters analyzed and tailored to your vision.',
+        reply: `I have analyzed your request. As your Lumière Celebration Concierge, I can assist you with:
+* **Thematic Curations**: Royal heritage, modern minimalist, or bohemian garden color palettes and styling.
+* **Smart Budget Math**: Deterministic reallocation across catering, decor, and photography without losing elegance.
+* **Vendor Checklists & Questions**: What to ask photographers, caterers, and venues before signing contracts.
+
+Tell me what you would like to explore next!`,
+        operations: [],
       };
-      return schema.parse(mockPatch);
+      return schema.parse(generalPatch);
     }
 
     // 3. Vendor Shortlist

@@ -30,9 +30,11 @@ export const PatchOperationSchema = z.discriminatedUnion('type', [
 ]);
 
 export const PlanPatchSchema = z.object({
-  summary: z.string().min(1),
-  operations: z.array(PatchOperationSchema).min(1),
+  summary: z.string().default(''),
+  reply: z.string().optional(),
+  operations: z.array(PatchOperationSchema).default([]),
 });
 
 export type PatchOperation = z.infer<typeof PatchOperationSchema>;
 export type PlanPatch = z.infer<typeof PlanPatchSchema>;
+

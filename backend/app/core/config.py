@@ -27,7 +27,7 @@ class Settings(BaseSettings):
     # LLM Settings
     LLM_PROVIDER: str = Field(default="gemini", description="'gemini' | 'mock'")
     GEMINI_API_KEY: str = Field(default="", description="Google Gemini API Key")
-    LLM_MODEL: str = Field(default="gemini-1.5-flash", description="Gemini Model")
+    LLM_MODEL: str = Field(default="gemini-3.1-flash-lite", description="Gemini Model")
 
     # App
     APP_URL: str = "http://localhost:3000"

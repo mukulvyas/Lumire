@@ -22,7 +22,8 @@ export async function runRevisePlanPipeline(
     theme?: string;
     tasks?: { title: string; due_date: string }[];
   },
-  userInstruction: string
+  userInstruction: string,
+  history?: Array<{ role: string; content: string }>
 ): Promise<RevisePlanResult> {
   const provider = getLLMProvider();
   const todayStr = new Date().toISOString().split('T')[0];
@@ -30,14 +31,15 @@ export async function runRevisePlanPipeline(
   const patch = await provider.generateStructured(
     PlanPatchSchema,
     REVISE_PLAN_SYSTEM_PROMPT,
-    buildRevisePlanUserPrompt(currentPlanSnapshot, userInstruction, todayStr)
+    buildRevisePlanUserPrompt(currentPlanSnapshot, userInstruction, todayStr, history)
   );
 
   // Compute deterministic before/after diffs for UI
   const diffs: PlanDiffItem[] = [];
   const proposed = JSON.parse(JSON.stringify(currentPlanSnapshot));
+  const operations = patch.operations || [];
 
-  for (const op of patch.operations) {
+  for (const op of operations) {
     if (op.type === 'setBudgetTotal') {
       diffs.push({
         field: 'Total Budget',
