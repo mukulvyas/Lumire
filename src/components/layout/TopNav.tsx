@@ -1,27 +1,103 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useParams } from 'next/navigation';
-import { Sparkles, User } from 'lucide-react';
+import { Sparkles, User, LogOut, ChevronDown } from 'lucide-react';
 import { EVENT_NAV_ITEMS } from '@/config/nav';
 import { UI_COPY } from '@/config/copy';
 import { cn } from '@/lib/utils';
 import { SavePlanModal } from '@/features/auth/components/SavePlanModal';
+import { createClient } from '@/server/auth/supabaseClient';
 
 interface TopNavProps {
   onSignInClick?: () => void;
+}
+
+interface UserProfile {
+  id: string;
+  email?: string;
+  fullName?: string;
+  avatarUrl?: string;
 }
 
 export function TopNav({ onSignInClick }: TopNavProps) {
   const pathname = usePathname();
   const params = useParams();
   const eventId = params?.id as string | undefined;
-  const [internalModalOpen, setInternalModalOpen] = React.useState(false);
+  const [internalModalOpen, setInternalModalOpen] = useState(false);
+  const [user, setUser] = useState<UserProfile | null>(null);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   const handleSignIn = onSignInClick || (() => setInternalModalOpen(true));
-
   const isEventRoute = Boolean(eventId && pathname.includes('/events/'));
+
+  useEffect(() => {
+    const supabase = createClient();
+
+    // Check active session on mount
+    supabase.auth.getUser().then(({ data: { user: currentUser } }) => {
+      if (currentUser && !currentUser.is_anonymous) {
+        setUser({
+          id: currentUser.id,
+          email: currentUser.email,
+          fullName: (currentUser.user_metadata?.full_name as string) || (currentUser.user_metadata?.name as string),
+          avatarUrl: (currentUser.user_metadata?.avatar_url as string) || (currentUser.user_metadata?.picture as string),
+        });
+      }
+    });
+
+    // Listen for auth state changes (e.g. login, logout)
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (session?.user && !session.user.is_anonymous) {
+        setUser({
+          id: session.user.id,
+          email: session.user.email,
+          fullName: (session.user.user_metadata?.full_name as string) || (session.user.user_metadata?.name as string),
+          avatarUrl: (session.user.user_metadata?.avatar_url as string) || (session.user.user_metadata?.picture as string),
+        });
+      } else {
+        setUser(null);
+      }
+    });
+
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, []);
+
+  // Close dropdown on outside click
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setMenuOpen(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  async function handleSignOut() {
+    try {
+      const supabase = createClient();
+      await supabase.auth.signOut();
+      setUser(null);
+      setMenuOpen(false);
+    } catch (err) {
+      console.error('Failed to sign out:', err);
+    }
+  }
+
+  const firstName =
+    user?.fullName?.split(' ')[0] ||
+    user?.email?.split('@')[0] ||
+    'Celebrant';
+
+  const userInitial = firstName.charAt(0).toUpperCase();
 
   return (
     <header className="fixed top-0 left-0 right-0 w-full z-40 bg-surface/85 backdrop-blur-xl border-b border-primary/10 transition-colors">
@@ -80,25 +156,105 @@ export function TopNav({ onSignInClick }: TopNavProps) {
           </div>
         )}
 
-        {/* Right: Sign in & Avatar */}
-        <div className="flex items-center gap-4">
-          <button
-            type="button"
-            onClick={handleSignIn}
-            className="font-sans text-sm font-medium text-on-surface-variant hover:text-primary transition-colors cursor-pointer"
-            id="nav-sign-in-btn"
-          >
-            Sign in
-          </button>
-          <button
-            type="button"
-            onClick={handleSignIn}
-            className="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant border border-primary/10 hover:border-primary/30 hover:text-primary transition-all active:scale-95 cursor-pointer"
-            id="nav-user-profile-btn"
-            aria-label="User account"
-          >
-            <User className="w-4 h-4" />
-          </button>
+        {/* Right: User Profile or Sign-in */}
+        <div className="flex items-center gap-3">
+          {user ? (
+            <div className="relative" ref={menuRef}>
+              <button
+                type="button"
+                onClick={() => setMenuOpen((prev) => !prev)}
+                className="flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-surface-container-lowest border border-primary/15 hover:border-primary/30 transition-all shadow-xs cursor-pointer"
+                id="nav-user-dropdown-btn"
+                aria-expanded={menuOpen}
+              >
+                {user.avatarUrl ? (
+                  <Image
+                    src={user.avatarUrl}
+                    alt={user.fullName || 'User avatar'}
+                    width={28}
+                    height={28}
+                    unoptimized
+                    referrerPolicy="no-referrer"
+                    className="w-7 h-7 rounded-full object-cover border border-primary/20"
+                  />
+                ) : (
+                  <div className="w-7 h-7 rounded-full bg-gradient-to-br from-primary to-primary-container text-on-primary font-sans text-xs font-semibold flex items-center justify-center">
+                    {userInitial}
+                  </div>
+                )}
+                <span className="font-sans text-sm font-medium text-on-surface">
+                  Hi, {firstName}
+                </span>
+                <ChevronDown className="w-3.5 h-3.5 text-on-surface-variant transition-transform" />
+              </button>
+
+              {/* Profile Dropdown */}
+              {menuOpen && (
+                <div
+                  className="absolute right-0 mt-2 w-64 rounded-2xl bg-surface-container-lowest/95 backdrop-blur-xl border border-primary/15 shadow-xl py-3 px-2 z-50 animate-in fade-in zoom-in-95 duration-150"
+                  role="menu"
+                >
+                  <div className="px-3 py-2 border-b border-primary/10">
+                    <p className="font-sans text-sm font-semibold text-on-surface truncate">
+                      {user.fullName || firstName}
+                    </p>
+                    <p className="font-sans text-xs text-on-surface-variant truncate">
+                      {user.email}
+                    </p>
+                    <div className="mt-1.5 flex items-center gap-1.5 text-[11px] text-emerald-700 font-medium">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                      Google Connected
+                    </div>
+                  </div>
+
+                  <div className="py-1">
+                    <Link
+                      href="/"
+                      onClick={() => setMenuOpen(false)}
+                      className="w-full flex items-center gap-2.5 px-3 py-2 rounded-xl font-sans text-sm text-on-surface hover:bg-surface-container transition-colors"
+                      role="menuitem"
+                    >
+                      <Sparkles className="w-4 h-4 text-primary" />
+                      <span>My Celebrations</span>
+                    </Link>
+                  </div>
+
+                  <div className="pt-1 border-t border-primary/10">
+                    <button
+                      type="button"
+                      onClick={handleSignOut}
+                      className="w-full flex items-center gap-2.5 px-3 py-2 rounded-xl font-sans text-sm text-error hover:bg-error/10 transition-colors cursor-pointer"
+                      role="menuitem"
+                      id="nav-logout-btn"
+                    >
+                      <LogOut className="w-4 h-4" />
+                      <span>Sign out</span>
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+          ) : (
+            <div className="flex items-center gap-3">
+              <button
+                type="button"
+                onClick={handleSignIn}
+                className="font-sans text-sm font-medium text-on-surface-variant hover:text-primary transition-colors cursor-pointer"
+                id="nav-sign-in-btn"
+              >
+                Sign in
+              </button>
+              <button
+                type="button"
+                onClick={handleSignIn}
+                className="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant border border-primary/10 hover:border-primary/30 hover:text-primary transition-all active:scale-95 cursor-pointer"
+                id="nav-user-profile-btn"
+                aria-label="User account"
+              >
+                <User className="w-4 h-4" />
+              </button>
+            </div>
+          )}
         </div>
       </div>
 
@@ -109,3 +265,4 @@ export function TopNav({ onSignInClick }: TopNavProps) {
     </header>
   );
 }
+
