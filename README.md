@@ -49,6 +49,12 @@ graph TD
     SupabaseAuth -->|RLS Context Token| SupabaseDB
 ```
 
+> 📖 **Deep Dive Documentation**:
+> - [System Architecture & Clean Layering](docs/ARCHITECTURE.md)
+> - [Contributing Guidelines & Quality Standards](CONTRIBUTING.md)
+> - [Security Policy & RLS Implementation](SECURITY.md)
+> - [MIT License](LICENSE)
+
 ---
 
 ## 🌟 Key Features
