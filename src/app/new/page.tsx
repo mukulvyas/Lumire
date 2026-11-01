@@ -131,6 +131,15 @@ function IntakeContent() {
                 setStatusMessage('Celebration plan finalized!');
                 fireConfettiBurst();
 
+                try {
+                  localStorage.setItem('lumiere_last_event_id', eventData.eventId);
+                  if (finalBrief?.title) {
+                    localStorage.setItem('lumiere_last_event_title', finalBrief.title);
+                  }
+                } catch {
+                  // Ignore localStorage errors
+                }
+
                 setTimeout(() => {
                   router.push(`/events/${eventData.eventId}`);
                 }, 700);

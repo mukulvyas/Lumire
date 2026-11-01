@@ -31,6 +31,19 @@ export function PlanHeader({
     year: 'numeric',
   });
 
+  React.useEffect(() => {
+    if (eventId) {
+      try {
+        localStorage.setItem('lumiere_last_event_id', eventId);
+        if (title) {
+          localStorage.setItem('lumiere_last_event_title', title);
+        }
+      } catch (err) {
+        console.warn('Could not save to localStorage', err);
+      }
+    }
+  }, [eventId, title]);
+
   return (
     <section className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-12 pt-4">
       <div className="space-y-3">

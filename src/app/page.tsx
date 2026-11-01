@@ -1,5 +1,6 @@
 import React from 'react';
 import { HeroPromptBar } from '@/features/home/HeroPromptBar';
+import { ActiveEventBanner } from '@/features/home/ActiveEventBanner';
 import { CelebrationCards } from '@/features/home/CelebrationCards';
 import { HowItWorksSection } from '@/features/home/HowItWorksSection';
 import { AtelierCallout } from '@/features/home/AtelierCallout';
@@ -35,9 +36,12 @@ export default function HomePage() {
           </h1>
 
           {/* Subtext */}
-          <p className="font-sans text-base sm:text-lg text-on-surface-variant max-w-[680px] mx-auto mb-10 leading-relaxed">
+          <p className="font-sans text-base sm:text-lg text-on-surface-variant max-w-[680px] mx-auto mb-8 leading-relaxed">
             {UI_COPY.brand.subtext}
           </p>
+
+          {/* Active Celebration Resume Banner */}
+          <ActiveEventBanner />
 
           {/* Prompt Bar with Mic & Chips */}
           <HeroPromptBar />

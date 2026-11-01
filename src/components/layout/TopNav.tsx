@@ -28,11 +28,32 @@ export function TopNav({ onSignInClick }: TopNavProps) {
   const eventId = params?.id as string | undefined;
   const [internalModalOpen, setInternalModalOpen] = useState(false);
   const [user, setUser] = useState<UserProfile | null>(null);
+  const [activeEventId, setActiveEventId] = useState<string | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
   const handleSignIn = onSignInClick || (() => setInternalModalOpen(true));
   const isEventRoute = Boolean(eventId && pathname.includes('/events/'));
+
+  useEffect(() => {
+    if (eventId) {
+      try {
+        localStorage.setItem('lumiere_last_event_id', eventId);
+        setActiveEventId(eventId);
+      } catch {
+        // Ignore localStorage error
+      }
+    } else {
+      try {
+        const stored = localStorage.getItem('lumiere_last_event_id');
+        if (stored) {
+          setActiveEventId(stored);
+        }
+      } catch {
+        // Ignore localStorage error
+      }
+    }
+  }, [eventId, pathname]);
 
   useEffect(() => {
     const supabase = createClient();
@@ -148,6 +169,15 @@ export function TopNav({ onSignInClick }: TopNavProps) {
               );
             })}
           </nav>
+        ) : activeEventId ? (
+          <Link
+            href={`/events/${activeEventId}`}
+            className="hidden sm:inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 hover:bg-primary/20 text-primary border border-primary/20 font-sans text-xs font-semibold shadow-xs transition-all hover:scale-105"
+            id="nav-resume-plan-btn"
+          >
+            <Sparkles className="w-3.5 h-3.5 fill-primary text-primary" />
+            <span>Resume Celebration →</span>
+          </Link>
         ) : (
           <div className="hidden md:flex items-center gap-2">
             <span className="text-xs uppercase tracking-widest text-primary font-semibold px-3 py-1 rounded-full bg-primary-fixed/40">
@@ -209,13 +239,13 @@ export function TopNav({ onSignInClick }: TopNavProps) {
 
                   <div className="py-1">
                     <Link
-                      href="/"
+                      href={activeEventId ? `/events/${activeEventId}` : '/new'}
                       onClick={() => setMenuOpen(false)}
                       className="w-full flex items-center gap-2.5 px-3 py-2 rounded-xl font-sans text-sm text-on-surface hover:bg-surface-container transition-colors"
                       role="menuitem"
                     >
                       <Sparkles className="w-4 h-4 text-primary" />
-                      <span>My Celebrations</span>
+                      <span>{activeEventId ? 'Resume My Celebration' : 'Plan a Celebration'}</span>
                     </Link>
                   </div>
 
