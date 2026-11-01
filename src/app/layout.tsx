@@ -59,8 +59,15 @@ export default function RootLayout({
     >
       <body className="bg-surface text-on-surface font-sans antialiased min-h-screen flex flex-col selection:bg-primary-fixed selection:text-primary">
         <Providers>
+          {/* Accessible Skip Link for Screen Readers & Keyboard Navigation */}
+          <a
+            href="#main-content"
+            className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2.5 focus:bg-primary focus:text-on-primary focus:rounded-xl focus:shadow-xl focus:outline-none focus:ring-2 focus:ring-primary-container font-sans text-xs font-semibold"
+          >
+            Skip to main content
+          </a>
           <TopNav />
-          <main className="flex-1 w-full pt-20 pb-32">
+          <main id="main-content" tabIndex={-1} className="flex-1 w-full pt-20 pb-32 focus:outline-none">
             {children}
           </main>
           <AskAIFab />

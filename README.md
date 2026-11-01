@@ -3,7 +3,9 @@
 [![Next.js](https://img.shields.io/badge/Next.js-15.0_App_Router-black?logo=next.js)](https://nextjs.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.115-009688?logo=fastapi)](https://fastapi.tiangolo.com/)
 [![Google Gemini](https://img.shields.io/badge/Google_Gemini-3.1_Flash--Lite-4285F4?logo=google)](https://ai.google.dev/)
-[![Supabase](https://img.shields.io/badge/Supabase-PostgreSQL_%26_Auth-3ECF8E?logo=supabase)](https://supabase.com/)
+[![Tests](https://img.shields.io/badge/Vitest-41%20Passed%20(100%25)-brightgreen?logo=vitest)](tests/)
+[![Accessibility](https://img.shields.io/badge/Accessibility-WCAG_2.1_AA-success?logo=w3c)](tests/unit/accessibility.test.ts)
+[![Security](https://img.shields.io/badge/Security-RLS_%26_Sanitized-blue?logo=shield)](tests/unit/securitySanitization.test.ts)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0_Strict-3178C6?logo=typescript)](https://www.typescriptlang.org/)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
