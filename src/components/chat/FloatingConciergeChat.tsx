@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useParams, usePathname } from 'next/navigation';
 import { Sparkles, Send, X, ArrowUpRight, Bot, User, Loader2 } from 'lucide-react';
 import { UI_COPY } from '@/config/copy';
+import { MarkdownContent } from './MarkdownContent';
 
 interface Message {
   id: string;
@@ -230,7 +231,11 @@ export function FloatingConciergeChat() {
                       : 'bg-surface-container border border-primary/10 text-on-surface rounded-bl-xs'
                   }`}
                 >
-                  <p className="whitespace-pre-wrap">{m.text}</p>
+                  {m.role === 'assistant' ? (
+                    <MarkdownContent content={m.text} className="text-on-surface text-xs sm:text-sm" />
+                  ) : (
+                    <p className="whitespace-pre-wrap">{m.text}</p>
+                  )}
                   <span
                     className={`text-[10px] mt-1 block ${
                       m.role === 'user' ? 'text-on-primary/70 text-right' : 'text-on-surface-variant'

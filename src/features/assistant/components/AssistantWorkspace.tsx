@@ -5,6 +5,7 @@ import { budgetCategories, tasks } from '@/server/db/schema';
 import { formatLakh } from '@/lib/formatters';
 import { PlanDiffItem } from '@/server/ai/pipelines/revisePlan';
 import { PlanPatch } from '@/server/ai/schemas/planPatch';
+import { MarkdownContent } from '@/components/chat/MarkdownContent';
 import {
   Sparkles,
   Send,
@@ -313,8 +314,8 @@ export function AssistantWorkspace({
                 </div>
 
                 {/* Narrative Response */}
-                <div className="font-sans text-sm sm:text-base text-on-surface leading-relaxed whitespace-pre-wrap space-y-2">
-                  {msg.content}
+                <div className="font-sans text-sm sm:text-base text-on-surface leading-relaxed">
+                  <MarkdownContent content={msg.content} />
                 </div>
 
                 {/* Nested Changes Ledger Card */}
