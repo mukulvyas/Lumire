@@ -1,3 +1,6 @@
+/**
+ * Input contract for budget rebalancing operations.
+ */
 export interface RebalanceCategoryInput {
   id?: string;
   name: string;
@@ -6,6 +9,9 @@ export interface RebalanceCategoryInput {
   sort_order?: number;
 }
 
+/**
+ * Output contract representing a balanced budget category with exact integer planned amount and percentage.
+ */
 export interface RebalancedCategoryOutput extends RebalanceCategoryInput {
   planned: number;
   percentage: number;
@@ -13,7 +19,17 @@ export interface RebalancedCategoryOutput extends RebalanceCategoryInput {
 
 /**
  * Deterministically rebalances category planned amounts so they sum EXACTLY to the event total budget.
- * Zero rounding drift or floating point error.
+ * Zero rounding drift or floating-point discrepancies. Uses largest-remainder distribution
+ * to ensure that all category allocations sum to 100% of the total budget.
+ *
+ * @param totalBudget - Target total celebration budget in rupees.
+ * @param categories - Array of categories with current planned allocations.
+ * @returns Array of rebalanced categories with adjusted planned amounts and exact percentages.
+ * @example
+ * ```ts
+ * const balanced = rebalanceBudget(1500000, categories);
+ * const total = balanced.reduce((sum, c) => sum + c.planned, 0); // Exactly 1500000
+ * ```
  */
 export function rebalanceBudget(
   totalBudget: number,
