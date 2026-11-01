@@ -116,7 +116,7 @@ export function SavePlanModal({ isOpen, onClose }: SavePlanModalProps) {
         if (e.target === e.currentTarget) onClose();
       }}
     >
-      <div className="relative w-full max-w-[460px] rounded-3xl bg-surface-container-lowest p-7 sm:p-9 shadow-[0_24px_72px_-12px_rgba(67,13,110,0.28)] flex flex-col items-center text-center border border-primary/15 transition-all">
+      <div className="relative w-full max-w-[460px] max-h-[92vh] overflow-y-auto rounded-3xl bg-surface-container-lowest p-6 sm:p-9 shadow-[0_24px_72px_-12px_rgba(67,13,110,0.28)] flex flex-col items-center text-center border border-primary/15 transition-all">
         {/* Close Button */}
         <button
           type="button"
