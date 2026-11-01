@@ -32,12 +32,12 @@ export function BottomTabBar() {
 
   return (
     <nav
-      className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-surface/95 backdrop-blur-xl border-t border-primary/10 px-2 py-1 safe-area-pb"
+      className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-surface/95 backdrop-blur-xl border-t border-primary/15 px-2 pt-1.5 safe-area-pb shadow-[0_-4px_24px_rgba(91,42,134,0.08)]"
       id="mobile-bottom-tab-bar"
       role="navigation"
       aria-label="Mobile Navigation"
     >
-      <div className="flex items-center justify-around h-16 max-w-md mx-auto">
+      <div className="flex items-center justify-around h-14 max-w-md mx-auto">
         {EVENT_NAV_ITEMS.map((item) => {
           const href = item.href(eventId);
           const isActive =

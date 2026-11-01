@@ -4,7 +4,17 @@ import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useParams } from 'next/navigation';
-import { Sparkles, User, LogOut, ChevronDown } from 'lucide-react';
+import {
+  Sparkles,
+  User,
+  LogOut,
+  ChevronDown,
+  Menu,
+  X,
+  Plus,
+  Home,
+  ArrowRight,
+} from 'lucide-react';
 import { EVENT_NAV_ITEMS } from '@/config/nav';
 import { UI_COPY } from '@/config/copy';
 import { cn } from '@/lib/utils';
@@ -30,10 +40,17 @@ export function TopNav({ onSignInClick }: TopNavProps) {
   const [user, setUser] = useState<UserProfile | null>(null);
   const [activeEventId, setActiveEventId] = useState<string | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
   const handleSignIn = onSignInClick || (() => setInternalModalOpen(true));
   const isEventRoute = Boolean(eventId && pathname.includes('/events/'));
+  const effectiveEventId = eventId || activeEventId;
+
+  // Auto close mobile drawer on navigation
+  useEffect(() => {
+    setMobileNavOpen(false);
+  }, [pathname]);
 
   useEffect(() => {
     if (eventId) {
@@ -265,7 +282,7 @@ export function TopNav({ onSignInClick }: TopNavProps) {
               )}
             </div>
           ) : (
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 sm:gap-3">
               <button
                 type="button"
                 onClick={handleSignIn}
@@ -285,8 +302,133 @@ export function TopNav({ onSignInClick }: TopNavProps) {
               </button>
             </div>
           )}
+
+          {/* Mobile Hamburger Menu Toggle Button (Always visible on mobile) */}
+          <button
+            type="button"
+            onClick={() => setMobileNavOpen((prev) => !prev)}
+            className="md:hidden w-9 h-9 rounded-full bg-surface-container-low border border-primary/20 flex items-center justify-center text-primary hover:bg-surface-container active:scale-95 transition-all cursor-pointer"
+            aria-label={mobileNavOpen ? 'Close menu' : 'Open navigation menu'}
+            id="nav-mobile-menu-toggle-btn"
+          >
+            {mobileNavOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+          </button>
         </div>
       </div>
+
+      {/* Mobile Navigation Drawer */}
+      {mobileNavOpen && (
+        <div
+          className="md:hidden w-full bg-surface/98 backdrop-blur-2xl border-b border-primary/15 px-5 py-4 space-y-4 animate-in slide-in-from-top-2 duration-200 max-h-[80vh] overflow-y-auto shadow-2xl"
+          id="nav-mobile-drawer"
+        >
+          {effectiveEventId && (
+            <div className="space-y-2">
+              <div className="flex items-center justify-between px-1 text-[11px] font-bold uppercase tracking-wider text-primary">
+                <span>Celebration Workspace</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              </div>
+              <div className="grid grid-cols-2 gap-2">
+                {EVENT_NAV_ITEMS.map((item) => {
+                  const href = item.href(effectiveEventId);
+                  const isActive =
+                    item.segment === '' ? pathname === href : pathname.startsWith(href);
+                  return (
+                    <Link
+                      key={item.label}
+                      href={href}
+                      onClick={() => setMobileNavOpen(false)}
+                      className={cn(
+                        'flex items-center gap-2 px-3 py-2.5 rounded-xl text-xs font-semibold transition-all',
+                        isActive
+                          ? 'bg-primary text-on-primary shadow-xs'
+                          : 'bg-surface-container-low text-on-surface hover:bg-surface-container'
+                      )}
+                    >
+                      <span>{item.label}</span>
+                    </Link>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
+          {/* Quick Global Links */}
+          <div className="pt-2 border-t border-primary/10 space-y-1.5">
+            <Link
+              href="/"
+              onClick={() => setMobileNavOpen(false)}
+              className="flex items-center gap-2 px-3 py-2.5 rounded-xl text-xs font-semibold text-on-surface hover:bg-surface-container transition-all"
+            >
+              <Home className="w-4 h-4 text-primary" />
+              <span>Home</span>
+            </Link>
+
+            <Link
+              href="/new"
+              onClick={() => setMobileNavOpen(false)}
+              className="flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-semibold text-primary bg-primary/10 hover:bg-primary/20 transition-all"
+            >
+              <span className="flex items-center gap-2">
+                <Plus className="w-4 h-4 text-primary" />
+                <span>Plan New Celebration</span>
+              </span>
+              <Sparkles className="w-3.5 h-3.5 fill-primary" />
+            </Link>
+
+            {activeEventId && !isEventRoute && (
+              <Link
+                href={`/events/${activeEventId}`}
+                onClick={() => setMobileNavOpen(false)}
+                className="flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-semibold text-on-primary bg-primary shadow-xs transition-all"
+              >
+                <span className="flex items-center gap-2">
+                  <Sparkles className="w-4 h-4" />
+                  <span>Resume My Celebration</span>
+                </span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            )}
+          </div>
+
+          {/* User Profile / Auth Action */}
+          <div className="pt-2 border-t border-primary/10">
+            {user ? (
+              <div className="flex items-center justify-between px-1">
+                <div className="text-left">
+                  <p className="text-xs font-semibold text-on-surface">
+                    {user.fullName || firstName}
+                  </p>
+                  <p className="text-[11px] text-on-surface-variant truncate max-w-[180px]">
+                    {user.email}
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => {
+                    handleSignOut();
+                    setMobileNavOpen(false);
+                  }}
+                  className="text-xs font-semibold text-error px-3 py-1.5 rounded-lg hover:bg-error/10 transition-colors"
+                >
+                  Sign out
+                </button>
+              </div>
+            ) : (
+              <button
+                type="button"
+                onClick={() => {
+                  setMobileNavOpen(false);
+                  handleSignIn();
+                }}
+                className="w-full py-2.5 rounded-xl bg-surface-container text-primary text-xs font-semibold border border-primary/20 hover:bg-surface-container-high transition-colors text-center"
+              >
+                Sign in with Google / Email
+              </button>
+            )}
+          </div>
+        </div>
+      )}
 
       <SavePlanModal
         isOpen={internalModalOpen}

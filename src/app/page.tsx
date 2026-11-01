@@ -18,11 +18,11 @@ export default function HomePage() {
         <div className="absolute w-[440px] h-[440px] top-64 right-1/4 rounded-full bg-[#FFF2D1] mix-blend-multiply filter blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
       </div>
 
-      <div className="max-w-[1160px] mx-auto px-6 relative z-10 flex flex-col items-center">
+      <div className="max-w-[1160px] mx-auto px-4 sm:px-6 relative z-10 flex flex-col items-center">
         {/* ================= SECTION 1: HERO ================= */}
-        <section className="pt-12 pb-20 md:pt-16 md:pb-24 text-center flex flex-col items-center w-full">
+        <section className="pt-6 sm:pt-14 pb-16 sm:pb-24 text-center flex flex-col items-center w-full">
           {/* AI Pill Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/70 backdrop-blur-md shadow-xs border border-primary/15 mb-6 transition-all hover:bg-white hover:border-primary/30">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/70 backdrop-blur-md shadow-xs border border-primary/15 mb-4 sm:mb-6 transition-all hover:bg-white hover:border-primary/30">
             <Sparkles className="w-3.5 h-3.5 text-tertiary-fixed-dim fill-tertiary-fixed-dim" />
             <span className="font-sans text-xs uppercase tracking-widest text-primary-container font-semibold">
               {UI_COPY.brand.aiPlannerBadge}
@@ -30,7 +30,7 @@ export default function HomePage() {
           </div> 
 
           {/* Main Headline */}
-          <h1 className="font-serif text-4xl sm:text-5xl.  md:text-6xl leading-[1.1] tracking-tight text-on-surface max-w-[860px] mx-auto mb-4 font-bold">
+          <h1 className="font-serif text-3xl sm:text-5xl md:text-6xl leading-[1.15] tracking-tight text-on-surface max-w-[860px] mx-auto mb-3 sm:mb-4 font-bold">
             Plan any celebration,{' '}
             <span className="italic font-normal text-primary">beautifully.</span>
           </h1>

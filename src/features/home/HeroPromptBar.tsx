@@ -37,7 +37,7 @@ export function HeroPromptBar() {
       {/* Large Glass Prompt Bar */}
       <form
         onSubmit={handleSubmit}
-        className="w-full h-[72px] rounded-full bg-surface-container-lowest/80 backdrop-blur-md border border-primary/15 shadow-[0_12px_40px_rgba(91,42,134,0.08)] px-3.5 flex items-center gap-3 transition-all duration-300 focus-within:shadow-[0_16px_48px_rgba(91,42,134,0.16)] focus-within:border-primary/40 focus-within:bg-surface-container-lowest"
+        className="w-full h-[60px] sm:h-[72px] rounded-full bg-surface-container-lowest/80 backdrop-blur-md border border-primary/15 shadow-[0_12px_40px_rgba(91,42,134,0.08)] px-2 sm:px-3.5 flex items-center gap-2 sm:gap-3 transition-all duration-300 focus-within:shadow-[0_16px_48px_rgba(91,42,134,0.16)] focus-within:border-primary/40 focus-within:bg-surface-container-lowest"
         id="home-prompt-form"
       >
         {/* Mic Button */}
@@ -45,12 +45,12 @@ export function HeroPromptBar() {
           type="button"
           onClick={handleVoiceClick}
           aria-label="Voice input"
-          className={`w-11 h-11 rounded-full flex items-center justify-center transition-colors shrink-0 cursor-pointer ${
+          className={`w-9 h-9 sm:w-11 sm:h-11 rounded-full flex items-center justify-center transition-colors shrink-0 cursor-pointer ${
             isListening ? 'text-secondary bg-secondary-fixed/50' : 'text-on-surface-variant hover:text-primary hover:bg-surface-container'
           }`}
           id="home-mic-btn"
         >
-          <Mic className="w-5 h-5" />
+          <Mic className="w-4 h-4 sm:w-5 sm:h-5" />
         </button>
 
         {/* Input Field */}
@@ -58,19 +58,20 @@ export function HeroPromptBar() {
           type="text"
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)}
-          placeholder={UI_COPY.home.promptPlaceholder}
-          className="font-sans text-sm sm:text-base text-on-surface placeholder:text-on-surface-variant/60 outline-none flex-1 bg-transparent min-w-0"
+          placeholder="Describe your celebration..."
+          className="font-sans text-xs sm:text-base text-on-surface placeholder:text-on-surface-variant/60 outline-none flex-1 bg-transparent min-w-0"
           id="home-event-prompt-input"
         />
 
         {/* Submit Action Button */}
         <button
           type="submit"
-          className="h-[52px] rounded-full px-6 sm:px-7 font-sans text-sm font-semibold text-on-primary bg-gradient-to-r from-primary-container to-primary flex items-center gap-2 hover:shadow-[0_8px_24px_rgba(91,42,134,0.35)] transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0 shrink-0 cursor-pointer"
+          className="h-[44px] sm:h-[52px] rounded-full px-3.5 sm:px-7 font-sans text-xs sm:text-sm font-semibold text-on-primary bg-gradient-to-r from-primary-container to-primary flex items-center gap-1.5 sm:gap-2 hover:shadow-[0_8px_24px_rgba(91,42,134,0.35)] transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0 shrink-0 cursor-pointer"
           id="home-create-plan-submit-btn"
         >
-          <span>{UI_COPY.home.submitButton}</span>
-          <Sparkles className="w-4 h-4 text-tertiary-fixed fill-tertiary-fixed" />
+          <span className="hidden sm:inline">{UI_COPY.home.submitButton}</span>
+          <span className="inline sm:hidden">Plan</span>
+          <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-tertiary-fixed fill-tertiary-fixed" />
         </button>
       </form>
 

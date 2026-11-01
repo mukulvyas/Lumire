@@ -91,7 +91,7 @@ export function IntakeChat({ initialBrief, onGenerate, isSubmitting = false }: I
       </div>
 
       {/* Main Interactive Brief Card */}
-      <form onSubmit={handleSubmit} className="bg-surface-container-lowest rounded-3xl p-6 sm:p-8 border border-primary/15 shadow-lg space-y-6">
+      <form onSubmit={handleSubmit} className="bg-surface-container-lowest rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-primary/15 shadow-lg space-y-5 sm:space-y-6">
         {/* Celebration Title & Type */}
         <div>
           <label className="block text-xs font-semibold text-on-surface-variant uppercase tracking-wider mb-2">
@@ -101,7 +101,7 @@ export function IntakeChat({ initialBrief, onGenerate, isSubmitting = false }: I
             type="text"
             value={brief.title}
             onChange={(e) => setBrief((prev) => ({ ...prev, title: e.target.value }))}
-            className="w-full text-xl sm:text-2xl font-serif font-bold text-on-surface bg-surface-container-low/60 border border-primary/15 rounded-xl px-4 py-3 outline-none focus:border-primary focus:bg-surface-container-lowest transition-all"
+            className="w-full text-lg sm:text-2xl font-serif font-bold text-on-surface bg-surface-container-low/60 border border-primary/15 rounded-xl px-3.5 py-2.5 sm:px-4 sm:py-3 outline-none focus:border-primary focus:bg-surface-container-lowest transition-all"
             required
             id="intake-event-title-input"
           />
@@ -112,7 +112,7 @@ export function IntakeChat({ initialBrief, onGenerate, isSubmitting = false }: I
           <label className="block text-xs font-semibold text-on-surface-variant uppercase tracking-wider mb-2">
             Event Type
           </label>
-          <div className="grid grid-cols-3 gap-3">
+          <div className="grid grid-cols-3 gap-2 sm:gap-3">
             {(['wedding', 'birthday', 'community'] as const).map((type) => {
               const isSelected = brief.type === type;
               return (
@@ -120,7 +120,7 @@ export function IntakeChat({ initialBrief, onGenerate, isSubmitting = false }: I
                   key={type}
                   type="button"
                   onClick={() => handleTypeChange(type)}
-                  className={`py-3 px-4 rounded-xl text-xs sm:text-sm font-semibold capitalize transition-all cursor-pointer border ${
+                  className={`py-2.5 px-2 sm:py-3 sm:px-4 rounded-xl text-xs sm:text-sm font-semibold capitalize transition-all cursor-pointer border truncate ${
                     isSelected
                       ? 'bg-primary text-on-primary border-primary shadow-sm'
                       : 'bg-surface-container-low/70 text-on-surface border-primary/10 hover:border-primary/30'
@@ -277,7 +277,7 @@ export function IntakeChat({ initialBrief, onGenerate, isSubmitting = false }: I
             <Tag className="w-4 h-4 text-primary" />
             Style & Theme Preference
           </label>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-1.5 sm:gap-2">
             {THEME_OPTIONS.map((theme) => {
               const isSelected = brief.preferences?.theme === theme;
               return (
@@ -285,7 +285,7 @@ export function IntakeChat({ initialBrief, onGenerate, isSubmitting = false }: I
                   key={theme}
                   type="button"
                   onClick={() => handleThemeToggle(theme)}
-                  className={`text-xs px-3.5 py-1.5 rounded-full border transition-all cursor-pointer ${
+                  className={`text-xs px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-full border transition-all cursor-pointer ${
                     isSelected
                       ? 'bg-secondary-container text-on-secondary font-semibold border-secondary shadow-xs'
                       : 'bg-surface-container-low text-on-surface-variant border-primary/10 hover:border-primary/30'
@@ -299,15 +299,15 @@ export function IntakeChat({ initialBrief, onGenerate, isSubmitting = false }: I
         </div>
 
         {/* Submit Action Container */}
-        <div className="pt-4 border-t border-primary/10 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="text-xs text-on-surface-variant">
+        <div className="pt-4 border-t border-primary/10 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
+          <div className="text-[11px] sm:text-xs text-center sm:text-left text-on-surface-variant">
             Deterministic math • Real-world price benchmarks • 100% editable
           </div>
 
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full sm:w-auto h-13 px-8 rounded-full font-sans text-sm font-semibold text-on-primary bg-gradient-to-r from-primary-container to-primary flex items-center justify-center gap-2.5 shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer disabled:opacity-50"
+            className="w-full sm:w-auto h-12 sm:h-13 px-6 sm:px-8 rounded-full font-sans text-xs sm:text-sm font-semibold text-on-primary bg-gradient-to-r from-primary-container to-primary flex items-center justify-center gap-2 shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer disabled:opacity-50"
             id="intake-generate-plan-btn"
           >
             <span>Generate Complete Plan</span>

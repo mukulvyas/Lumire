@@ -19,8 +19,9 @@ export function FloatingConciergeChat() {
   const pathname = usePathname();
   const eventId = params?.id as string | undefined;
 
-  // Don't show floating widget on the full assistant page to avoid clutter
+  // Don't show floating widget on full assistant page or during intake creation
   const isAssistantPage = pathname.includes('/assistant');
+  const isIntakePage = pathname === '/new';
 
   const [isOpen, setIsOpen] = useState(false);
   const [inputVal, setInputVal] = useState('');
@@ -42,7 +43,7 @@ export function FloatingConciergeChat() {
     }
   }, [messages, isOpen]);
 
-  if (isAssistantPage) {
+  if (isAssistantPage || isIntakePage) {
     return null;
   }
 
@@ -139,21 +140,28 @@ export function FloatingConciergeChat() {
     }
   }
 
+  const isEventRoute = Boolean(eventId && pathname.includes('/events/'));
+
   return (
-    <div className="fixed z-40 right-6 bottom-20 md:bottom-6" id="floating-chat-container">
+    <div
+      className={`fixed z-40 right-4 sm:right-6 transition-all duration-200 ${
+        isEventRoute ? 'bottom-20 md:bottom-6' : 'bottom-5 md:bottom-6'
+      }`}
+      id="floating-chat-container"
+    >
       {/* Floating Trigger Button (when closed) */}
       {!isOpen && (
         <button
           type="button"
           onClick={() => setIsOpen(true)}
-          className="group flex items-center gap-2.5 h-12 md:h-14 px-5 md:px-6 rounded-full bg-gradient-to-r from-primary-container to-primary text-on-primary shadow-xl hover:shadow-2xl hover:-translate-y-0.5 active:translate-y-0 transition-all cursor-pointer"
+          className="group flex items-center justify-center sm:gap-2.5 h-12 w-12 sm:w-auto sm:h-14 sm:px-6 rounded-full bg-gradient-to-r from-primary-container to-primary text-on-primary shadow-xl hover:shadow-2xl hover:-translate-y-0.5 active:translate-y-0 transition-all cursor-pointer"
           id="ask-ai-fab"
           aria-label="Open Lumière AI Chatbot"
         >
-          <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center group-hover:rotate-12 transition-transform">
+          <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center group-hover:rotate-12 transition-transform shrink-0">
             <Sparkles className="w-3.5 h-3.5 text-tertiary-fixed fill-tertiary-fixed" />
           </div>
-          <span className="font-sans text-sm md:text-base font-semibold tracking-wide">
+          <span className="hidden sm:inline font-sans text-sm md:text-base font-semibold tracking-wide">
             {UI_COPY.fab.askAi}
           </span>
         </button>
