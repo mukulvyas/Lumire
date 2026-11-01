@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { vendors } from '@/server/db/schema';
 import { formatCurrency, formatLakh } from '@/lib/formatters';
 import {
@@ -43,7 +44,12 @@ export function VendorKanbanManager({
   const [selectedVendor, setSelectedVendor] = useState<(typeof vendors.$inferSelect) | null>(null);
   const [questions, setQuestions] = useState<{ question: string; priority: string; answered?: boolean }[]>([]);
   const [isLoadingQuestions, setIsLoadingQuestions] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const [showAddModal, setShowAddModal] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // New Vendor Form
   const [newVendorName, setNewVendorName] = useState('');
@@ -229,6 +235,20 @@ export function VendorKanbanManager({
 
             <button
               type="button"
+              onClick={() => {
+                if (filteredVendors.length > 0) {
+                  handleOpenDrawer(filteredVendors[0]);
+                }
+              }}
+              className="h-11 px-4 rounded-full bg-primary/10 text-primary border border-primary/20 font-sans text-xs sm:text-sm font-semibold flex items-center gap-2 hover:bg-primary hover:text-on-primary transition-all active:scale-95 cursor-pointer whitespace-nowrap shadow-xs"
+              id="vendors-ai-copilot-btn"
+            >
+              <Sparkles className="w-4 h-4 fill-current" />
+              <span>AI Vendor Copilot</span>
+            </button>
+
+            <button
+              type="button"
               onClick={() => setShowAddModal(true)}
               className="h-11 px-5 rounded-full bg-primary text-on-primary font-sans text-xs sm:text-sm font-semibold flex items-center gap-2 shadow-xs hover:shadow-md hover:bg-primary-container transition-all active:scale-95 cursor-pointer whitespace-nowrap"
               id="vendors-add-vendor-btn"
@@ -294,6 +314,19 @@ export function VendorKanbanManager({
                         </span>
                       </div>
 
+                      {/* AI Negotiation Copilot Button */}
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleOpenDrawer(vendor);
+                        }}
+                        className="w-full py-2 px-3 rounded-xl bg-primary/10 hover:bg-primary text-primary hover:text-on-primary font-sans text-xs font-semibold flex items-center justify-center gap-1.5 transition-all cursor-pointer border border-primary/20 shadow-2xs group-hover:border-primary"
+                      >
+                        <Sparkles className="w-3.5 h-3.5 fill-current" />
+                        <span>AI Negotiation Questions</span>
+                      </button>
+
                       {/* Card Footer: Call & WhatsApp & Stage Dropdown */}
                       <div
                         className="flex items-center justify-between pt-2.5 border-t border-surface-container"
@@ -340,10 +373,10 @@ export function VendorKanbanManager({
       </div>
 
       {/* AI Questions Drawer */}
-      {selectedVendor && (
+      {mounted && selectedVendor && createPortal(
         <>
           <div
-            className="fixed inset-0 bg-black/30 backdrop-blur-xs z-50 transition-opacity"
+            className="fixed inset-0 bg-black/40 backdrop-blur-xs z-50 transition-opacity"
             onClick={() => setSelectedVendor(null)}
           />
 
@@ -448,13 +481,14 @@ export function VendorKanbanManager({
               </a>
             </div>
           </aside>
-        </>
+        </>,
+        document.body
       )}
 
       {/* Add Vendor Modal */}
-      {showAddModal && (
-        <div className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-surface-container-lowest rounded-3xl p-6 sm:p-8 max-w-md w-full border border-primary/15 shadow-2xl space-y-5">
+      {mounted && showAddModal && createPortal(
+        <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-surface-container-lowest rounded-3xl p-6 sm:p-8 max-w-md w-full border border-primary/15 shadow-2xl space-y-5 animate-in fade-in zoom-in-95 duration-200">
             <h3 className="font-serif text-2xl font-bold text-primary">Add New Vendor</h3>
 
             <form onSubmit={handleAddVendor} className="space-y-4">
@@ -550,7 +584,8 @@ export function VendorKanbanManager({
               </div>
             </form>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </div>
   );
